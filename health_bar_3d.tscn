@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dteg54smb7pr8"]
+
+[ext_resource type="Script" path="res://health_bar_3d.gd" id="1_health"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bg"]
+size = Vector2(1.2, 0.15)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bg"]
+albedo_color = Color(0.15, 0.15, 0.2, 1)
+cull_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fill"]
+size = Vector2(1.0, 0.12)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fill"]
+albedo_color = Color(0.2, 0.4, 0.9, 1)
+cull_mode = 2
+
+[node name="HealthBar3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
+script = ExtResource("1_health")
+
+[node name="Background" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_bg")
+surface_material_override/0 = SubResource("StandardMaterial3D_bg")
+
+[node name="Fill" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
+mesh = SubResource("PlaneMesh_fill")
+surface_material_override/0 = SubResource("StandardMaterial3D_fill")

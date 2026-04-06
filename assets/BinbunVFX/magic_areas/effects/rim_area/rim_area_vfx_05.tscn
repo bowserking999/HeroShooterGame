@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://ckoqcgcsvqmq"]
+
+[ext_resource type="Material" uid="uid://bbnaxuxhpc33c" path="res://assets/BinbunVFX/magic_areas/src/material/rim_area/rim_area_05/rim_area_05_ground.tres" id="1_5ai0x"]
+[ext_resource type="Script" uid="uid://tb7n6ybv43ch" path="res://assets/BinbunVFX/shared/script/vfx_controller.gd" id="1_rs0ub"]
+[ext_resource type="Material" uid="uid://bon5fsofcyc64" path="res://assets/BinbunVFX/magic_areas/src/material/rim_area/rim_area_05/rim_area_05_glow.tres" id="2_rs0ub"]
+[ext_resource type="Material" uid="uid://bs3j4ni7hx5la" path="res://assets/BinbunVFX/magic_areas/src/material/rim_area/rim_area_05/rim_area_05_extraglow.tres" id="3_5ai0x"]
+[ext_resource type="Material" uid="uid://drj7s8b8y242x" path="res://assets/BinbunVFX/magic_areas/src/material/rim_area/rim_area_05/rim_area_05_upward.tres" id="4_rs0ub"]
+[ext_resource type="Script" uid="uid://bdk8hhttligw" path="res://assets/BinbunVFX/shared/script/vfx_light.gd" id="5_pin8h"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_5al3w"]
+size = Vector2(3.4, 3.4)
+subdivide_width = 32
+subdivide_depth = 32
+center_offset = Vector3(0, 0.01, 0)
+orientation = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_gqmsi"]
+size = Vector2(6, 6)
+subdivide_width = 32
+subdivide_depth = 32
+center_offset = Vector3(0, 0.01, 0)
+orientation = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_ie8so"]
+size = Vector2(5, 5)
+subdivide_width = 32
+subdivide_depth = 32
+center_offset = Vector3(0, 0.01, 0)
+orientation = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pegna"]
+top_radius = 1.6
+bottom_radius = 1.25
+height = 1.4
+radial_segments = 32
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hu7nh"]
+flip_faces = true
+top_radius = 1.4
+bottom_radius = 1.2
+height = 1.8
+radial_segments = 32
+cap_top = false
+cap_bottom = false
+
+[node name="RimAreaVFX_05" type="Node3D"]
+script = ExtResource("1_rs0ub")
+local_coords = true
+primary_color = Color(0.694118, 0.988235, 0.709804, 1)
+secondary_color = Color(0, 0.94902, 0.0784314, 1)
+light_color = Color(0, 0.94902, 0.0784314, 1)
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_5ai0x")
+mesh = SubResource("QuadMesh_5al3w")
+
+[node name="Glow" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_rs0ub")
+mesh = SubResource("QuadMesh_gqmsi")
+
+[node name="ExtraGlow" type="MeshInstance3D" parent="."]
+material_override = ExtResource("3_5ai0x")
+mesh = SubResource("QuadMesh_ie8so")
+
+[node name="Upward_01" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+material_override = ExtResource("4_rs0ub")
+mesh = SubResource("CylinderMesh_pegna")
+
+[node name="Upward_02" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+material_override = ExtResource("4_rs0ub")
+mesh = SubResource("CylinderMesh_hu7nh")
+
+[node name="Light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+light_color = Color(0, 0.94902, 0.0784314, 1)
+light_energy = 3.99956
+omni_range = 10.0
+omni_attenuation = 0.5
+script = ExtResource("5_pin8h")
+base_energy = 4.0
+light_multiplier = 0.99989
+metadata/_custom_type_script = "uid://bdk8hhttligw"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

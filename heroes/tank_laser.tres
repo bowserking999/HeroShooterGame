@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="HeroResource" load_steps=2 format=3 uid="uid://bjnmshd2df5aa"]
+
+[ext_resource type="Script" uid="uid://b2jniube2oykh" path="res://hero_resource.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+hero_id = "tank_laser"
+display_name = "Laser"
+archetype_id = "tank"
+run_speed = 8.0
+jump_velocity = 9.0
+default_weapon = 1
+max_health = 500
+model_scene_path = ""
+body_color = Color(0.65, 0.55, 0.5, 1)

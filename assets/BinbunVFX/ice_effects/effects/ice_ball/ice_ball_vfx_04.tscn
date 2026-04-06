@@ -1,0 +1,189 @@
+[gd_scene format=3 uid="uid://cu5joi3nslfhs"]
+
+[ext_resource type="Script" uid="uid://tb7n6ybv43ch" path="res://assets/BinbunVFX/shared/script/vfx_controller.gd" id="1_wiio7"]
+[ext_resource type="Material" uid="uid://dlmxy3n30nllo" path="res://assets/BinbunVFX/ice_effects/src/material/ice_ball/ice_ball_04/ice_ball_04_mist.tres" id="2_6d4lx"]
+[ext_resource type="Material" uid="uid://bldyvqv5pp15x" path="res://assets/BinbunVFX/ice_effects/src/material/ice_ball/ice_ball_04/ice_ball_04_core.tres" id="2_wiio7"]
+[ext_resource type="Script" uid="uid://bdk8hhttligw" path="res://assets/BinbunVFX/shared/script/vfx_light.gd" id="4_axso7"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_axso7"]
+radial_segments = 32
+rings = 16
+
+[sub_resource type="Curve" id="Curve_ky6kj"]
+_data = [Vector2(0, 0), 0.0, 11.3079, 0, 0, Vector2(0.279412, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.66742, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_wiio7"]
+curve = SubResource("Curve_ky6kj")
+
+[sub_resource type="Gradient" id="Gradient_l76df"]
+colors = PackedColorArray(1, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_axso7"]
+gradient = SubResource("Gradient_l76df")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wiio7"]
+emission_shape = 1
+emission_sphere_radius = 0.3
+gravity = Vector3(0, 0, 0)
+color_initial_ramp = SubResource("GradientTexture1D_axso7")
+alpha_curve = SubResource("CurveTexture_wiio7")
+
+[sub_resource type="QuadMesh" id="QuadMesh_axso7"]
+size = Vector2(1.5, 1.5)
+subdivide_width = 32
+subdivide_depth = 32
+
+[sub_resource type="Animation" id="Animation_axso7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core:material_override:shader_parameter/alpha_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mist:material_override:shader_parameter/alpha_multiplier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Light:light_multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_wiio7"]
+resource_name = "main"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core:material_override:shader_parameter/alpha_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mist:material_override:shader_parameter/alpha_multiplier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Light:light_multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_xvquj"]
+resource_name = "oneshot"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core:material_override:shader_parameter/alpha_multiplier")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 1),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mist:material_override:shader_parameter/alpha_multiplier")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Light:light_multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.31, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_axso7"]
+_data = {
+&"RESET": SubResource("Animation_axso7"),
+&"main": SubResource("Animation_wiio7"),
+&"oneshot": SubResource("Animation_xvquj")
+}
+
+[node name="IceBallVFX_04" type="Node3D" unique_id=953238135]
+script = ExtResource("1_wiio7")
+preview = false
+reset_particles = false
+primary_color = Color(1, 1, 1, 1)
+secondary_color = Color(0.443137, 1, 0.917647, 1)
+tertiary_color = Color(0.5056, 0.58624, 0.64, 1)
+light_color = Color(0.443137, 1, 0.917647, 1)
+
+[node name="Core" type="MeshInstance3D" parent="." unique_id=1895708831]
+material_override = ExtResource("2_wiio7")
+mesh = SubResource("SphereMesh_axso7")
+
+[node name="Mist" type="GPUParticles3D" parent="." unique_id=974601108]
+sorting_offset = -1.0
+material_override = ExtResource("2_6d4lx")
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_wiio7")
+draw_pass_1 = SubResource("QuadMesh_axso7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=500246680]
+libraries/ = SubResource("AnimationLibrary_axso7")
+
+[node name="Light" type="OmniLight3D" parent="." unique_id=1210056554]
+light_color = Color(0.443137, 1, 0.917647, 1)
+light_energy = 4.0
+script = ExtResource("4_axso7")
+base_energy = 4.0
+metadata/_custom_type_script = "uid://bdk8hhttligw"

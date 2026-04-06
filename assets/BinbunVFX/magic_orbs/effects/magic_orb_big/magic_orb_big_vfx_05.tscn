@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://rhv6vcv0r1up"]
+
+[ext_resource type="Script" uid="uid://tb7n6ybv43ch" path="res://assets/BinbunVFX/shared/script/vfx_controller.gd" id="1_jaa64"]
+[ext_resource type="Material" uid="uid://dn5dhb3p22jvp" path="res://assets/BinbunVFX/magic_orbs/src/material/magic_orb_big/magic_orb_big_05/magic_orb_big_05_flare.tres" id="1_v0ulq"]
+[ext_resource type="Material" uid="uid://4e6mkbxhaqws" path="res://assets/BinbunVFX/magic_orbs/src/material/magic_orb_big/magic_orb_big_05/magic_orb_big_05_glow.tres" id="2_v0ulq"]
+[ext_resource type="Material" uid="uid://dvp03tp8was2p" path="res://assets/BinbunVFX/magic_orbs/src/material/magic_orb_big/magic_orb_big_05/magic_orb_big_05_inner.tres" id="3_v0ulq"]
+[ext_resource type="Script" uid="uid://bdk8hhttligw" path="res://assets/BinbunVFX/shared/script/vfx_light.gd" id="4_l5hbw"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_fxej1"]
+size = Vector2(3.4, 3.4)
+subdivide_width = 32
+subdivide_depth = 32
+
+[sub_resource type="SphereMesh" id="SphereMesh_2xnrp"]
+radius = 2.0
+height = 4.0
+radial_segments = 32
+rings = 16
+
+[sub_resource type="SphereMesh" id="SphereMesh_laamv"]
+radius = 0.8
+height = 1.6
+radial_segments = 32
+rings = 16
+
+[node name="MagicOrbBigVFX_05" type="Node3D"]
+script = ExtResource("1_jaa64")
+primary_color = Color(0.79695, 0.99, 0.693, 1)
+secondary_color = Color(0, 0.95, 0.0475, 1)
+tertiary_color = Color(0.818397, 1, 0.829704, 1)
+light_color = Color(0, 0.94902, 0.0470588, 1)
+
+[node name="Flare" type="MeshInstance3D" parent="."]
+sorting_offset = -1.0
+material_override = ExtResource("1_v0ulq")
+mesh = SubResource("QuadMesh_fxej1")
+
+[node name="Glow" type="MeshInstance3D" parent="."]
+sorting_offset = 1.0
+material_override = ExtResource("2_v0ulq")
+mesh = SubResource("SphereMesh_2xnrp")
+
+[node name="Inner" type="MeshInstance3D" parent="."]
+sorting_offset = -0.5
+material_override = ExtResource("3_v0ulq")
+mesh = SubResource("SphereMesh_laamv")
+
+[node name="Light" type="OmniLight3D" parent="."]
+light_color = Color(0, 0.94902, 0.0470588, 1)
+light_energy = 4.0
+script = ExtResource("4_l5hbw")
+base_energy = 4.0
+metadata/_custom_type_script = "uid://bdk8hhttligw"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

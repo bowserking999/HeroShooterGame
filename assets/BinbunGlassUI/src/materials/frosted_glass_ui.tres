@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bte3eos5wy73k"]
+
+[ext_resource type="Shader" uid="uid://cp56g87sva5nt" path="res://assets/BinbunGlassUI/src/shader/glass_panel.gdshader" id="1_ckltb"]
+
+[resource]
+shader = ExtResource("1_ckltb")
+shader_parameter/brightness = 0.2
+shader_parameter/chromatic_shift_amount = 0.2
+shader_parameter/bend_amount = 0.2
+shader_parameter/blur_amount = 2.0
+shader_parameter/grain_amount = 0.05
+shader_parameter/curve_light_blend = 0.5
+shader_parameter/rim_light_blend = 0.8
+shader_parameter/shadow_color = Color(0, 0, 0, 1)

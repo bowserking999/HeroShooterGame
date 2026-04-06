@@ -1,0 +1,160 @@
+[gd_scene load_steps=16 format=3 uid="uid://dbm53nv4px6ot"]
+
+[ext_resource type="Script" uid="uid://tb7n6ybv43ch" path="res://assets/BinbunVFX/shared/script/vfx_controller.gd" id="1_shjbm"]
+[ext_resource type="Material" uid="uid://bvsmcqafrra3t" path="res://assets/BinbunVFX/ice_effects/src/material/ice_mist/ice_mist_04/ice_mist_04_core.tres" id="1_wxd6w"]
+[ext_resource type="Material" uid="uid://clu55qin5mbue" path="res://assets/BinbunVFX/ice_effects/src/material/ice_mist/ice_mist_04/ice_mist_04_mist.tres" id="2_wxd6w"]
+
+[sub_resource type="Curve" id="Curve_7vp5o"]
+_data = [Vector2(0, 0), 0.0, 11.3079, 0, 0, Vector2(0.279412, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.66742, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_q74dy"]
+curve = SubResource("Curve_7vp5o")
+
+[sub_resource type="Gradient" id="Gradient_hbcbe"]
+colors = PackedColorArray(1, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_o4cq2"]
+gradient = SubResource("Gradient_hbcbe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cfsxt"]
+emission_shape_scale = Vector3(1, 0.5, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 0, 0)
+color_initial_ramp = SubResource("GradientTexture1D_o4cq2")
+alpha_curve = SubResource("CurveTexture_q74dy")
+
+[sub_resource type="QuadMesh" id="QuadMesh_yiyr5"]
+size = Vector2(2.5, 2.5)
+subdivide_width = 32
+subdivide_depth = 32
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_shjbm"]
+emission_shape_scale = Vector3(1, 0.5, 1)
+emission_shape = 1
+emission_sphere_radius = 2.0
+gravity = Vector3(0, 0, 0)
+color_initial_ramp = SubResource("GradientTexture1D_o4cq2")
+alpha_curve = SubResource("CurveTexture_q74dy")
+
+[sub_resource type="QuadMesh" id="QuadMesh_lgauk"]
+size = Vector2(3, 3)
+subdivide_width = 32
+subdivide_depth = 32
+
+[sub_resource type="Animation" id="Animation_coelt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core:material_override:shader_parameter/alpha_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mist:material_override:shader_parameter/alpha_multiplier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_28bme"]
+resource_name = "main"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core:material_override:shader_parameter/alpha_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mist:material_override:shader_parameter/alpha_multiplier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_o4cq2"]
+resource_name = "oneshot"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core:material_override:shader_parameter/alpha_multiplier")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mist:material_override:shader_parameter/alpha_multiplier")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q74dy"]
+_data = {
+&"RESET": SubResource("Animation_coelt"),
+&"main": SubResource("Animation_28bme"),
+&"oneshot": SubResource("Animation_o4cq2")
+}
+
+[node name="IceMistVFX_04" type="Node3D"]
+script = ExtResource("1_shjbm")
+reset_particles = false
+primary_color = Color(0.607843, 1, 1, 1)
+secondary_color = Color(0.47451, 0.580392, 0.580392, 1)
+tertiary_color = Color(0.33, 0.33, 0.33, 1)
+
+[node name="Core" type="GPUParticles3D" parent="."]
+material_override = ExtResource("1_wxd6w")
+amount = 16
+lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_cfsxt")
+draw_pass_1 = SubResource("QuadMesh_yiyr5")
+
+[node name="Mist" type="GPUParticles3D" parent="."]
+material_override = ExtResource("2_wxd6w")
+amount = 32
+lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_shjbm")
+draw_pass_1 = SubResource("QuadMesh_lgauk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_q74dy")
+}

@@ -1,0 +1,312 @@
+[gd_scene format=3 uid="uid://1hnfjqb3x811"]
+
+[ext_resource type="Texture2D" uid="uid://dq8jkeeag6vov" path="res://assets/BinbunVFX/shared/texture/placeholder.png" id="1_dl8o0"]
+[ext_resource type="PackedScene" uid="uid://blro7lbshp41i" path="res://assets/BinbunVFX/ice_effects/effects/ice_mist/ice_mist_vfx_01.tscn" id="2_dl8o0"]
+[ext_resource type="PackedScene" uid="uid://dj104qu1nlgli" path="res://assets/BinbunVFX/ice_effects/effects/ice_mist/ice_mist_vfx_02.tscn" id="3_28bme"]
+[ext_resource type="PackedScene" uid="uid://cw2bx54ig0fbw" path="res://assets/BinbunVFX/ice_effects/effects/ice_mist/ice_mist_vfx_03.tscn" id="4_coelt"]
+[ext_resource type="PackedScene" uid="uid://dbm53nv4px6ot" path="res://assets/BinbunVFX/ice_effects/effects/ice_mist/ice_mist_vfx_04.tscn" id="5_o4cq2"]
+[ext_resource type="PackedScene" uid="uid://df117erh12c0l" path="res://assets/BinbunVFX/ice_effects/effects/ice_ball/ice_ball_vfx_01.tscn" id="6_q74dy"]
+[ext_resource type="PackedScene" uid="uid://bsv0n5vhuv434" path="res://assets/BinbunVFX/ice_effects/effects/ice_ball/ice_ball_vfx_02.tscn" id="7_y628u"]
+[ext_resource type="PackedScene" uid="uid://dwufu6peh4ywg" path="res://assets/BinbunVFX/ice_effects/effects/ice_ball/ice_ball_vfx_03.tscn" id="8_kduhv"]
+[ext_resource type="PackedScene" uid="uid://cu5joi3nslfhs" path="res://assets/BinbunVFX/ice_effects/effects/ice_ball/ice_ball_vfx_04.tscn" id="9_pywj1"]
+[ext_resource type="PackedScene" uid="uid://c7camotgwun0r" path="res://assets/BinbunVFX/ice_effects/effects/ice_shard/ice_shard_vfx_01.tscn" id="10_aokbx"]
+[ext_resource type="PackedScene" uid="uid://bbymosk87klf8" path="res://assets/BinbunVFX/ice_effects/effects/ice_shard/ice_shard_vfx_02.tscn" id="11_glgrp"]
+[ext_resource type="PackedScene" uid="uid://qsb03wlwko5x" path="res://assets/BinbunVFX/ice_effects/effects/ice_shard/ice_shard_vfx_03.tscn" id="12_q26w5"]
+[ext_resource type="PackedScene" uid="uid://dsqotndcyptxv" path="res://assets/BinbunVFX/ice_effects/effects/ice_shard/ice_shard_vfx_04.tscn" id="13_i7k45"]
+[ext_resource type="PackedScene" uid="uid://0v52c0yofuk8" path="res://assets/BinbunVFX/ice_effects/effects/ice_area/ice_area_vfx_01.tscn" id="14_gs6kc"]
+[ext_resource type="PackedScene" uid="uid://dx5b1wh71gp1e" path="res://assets/BinbunVFX/ice_effects/effects/ice_area/ice_area_vfx_02.tscn" id="15_wcotl"]
+[ext_resource type="PackedScene" uid="uid://bbdk2rdi0u2yt" path="res://assets/BinbunVFX/ice_effects/effects/ice_area/ice_area_vfx_03.tscn" id="16_3mgj4"]
+[ext_resource type="PackedScene" uid="uid://cvf4vwnfdan1l" path="res://assets/BinbunVFX/ice_effects/effects/ice_area/ice_area_vfx_04.tscn" id="17_esxve"]
+[ext_resource type="PackedScene" uid="uid://dn5m5aagok8qu" path="res://assets/BinbunVFX/ice_effects/effects/ice_cloud/ice_cloud_vfx_01.tscn" id="18_hlr3x"]
+[ext_resource type="PackedScene" uid="uid://b6g13pijwy1s0" path="res://assets/BinbunVFX/ice_effects/effects/ice_cloud/ice_cloud_vfx_02.tscn" id="19_db4ml"]
+[ext_resource type="PackedScene" uid="uid://ds1mw50gbsjw8" path="res://assets/BinbunVFX/ice_effects/effects/ice_cloud/ice_cloud_vfx_03.tscn" id="20_x81e2"]
+[ext_resource type="PackedScene" uid="uid://b2karh0qx6qvh" path="res://assets/BinbunVFX/ice_effects/effects/ice_cloud/ice_cloud_vfx_04.tscn" id="21_ubwrx"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7dm0k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h2yge"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lquwl"]
+
+[sub_resource type="Sky" id="Sky_lquwl"]
+sky_material = SubResource("ProceduralSkyMaterial_lquwl")
+
+[sub_resource type="Environment" id="Environment_0xm2m"]
+background_mode = 2
+background_color = Color(0.266667, 0, 0, 1)
+background_energy_multiplier = 0.8
+sky = SubResource("Sky_lquwl")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 2.0
+ssao_enabled = true
+ssao_intensity = 4.0
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 1.0
+glow_bloom = 0.05
+glow_map_strength = 0.0
+fog_enabled = true
+fog_light_color = Color(9.926968e-08, 0.10555794, 0.08854117, 1)
+fog_light_energy = 2.0
+fog_density = 0.02
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+volumetric_fog_albedo = Color(0.06660853, 0.25488317, 0.2698755, 1)
+volumetric_fog_emission_energy = 0.0
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 1.1
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_0xm2m"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 30.0
+dof_blur_far_transition = 64.0
+dof_blur_near_transition = -1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_ig7tw"]
+size = Vector3(1000, 6, 1000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bvp3"]
+albedo_color = Color(0.866489, 0.931253, 0.944994, 1)
+albedo_texture = ExtResource("1_dl8o0")
+uv1_triplanar = true
+
+[node name="Node3D" type="Node3D" unique_id=530315702]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2031943705]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_7dm0k")
+surface_material_override/0 = SubResource("ShaderMaterial_h2yge")
+
+[node name="Environment" type="Node3D" parent="." unique_id=649369530]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment" unique_id=1009373644]
+transform = Transform3D(-0.5, -0.663414, -0.55667, -5.61943e-08, -0.642788, 0.766044, -0.866025, 0.383022, 0.321394, 0, 2.19112, 0)
+light_color = Color(1, 0.992157, 0.956863, 1)
+light_energy = 1.5
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 9.219
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=395185578]
+environment = SubResource("Environment_0xm2m")
+camera_attributes = SubResource("CameraAttributesPractical_0xm2m")
+
+[node name="Ground" type="MeshInstance3D" parent="Environment" unique_id=314877367]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+mesh = SubResource("BoxMesh_ig7tw")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_1bvp3")
+
+[node name="Lights" type="Node3D" parent="Environment" unique_id=1385239721]
+
+[node name="SpotLight3D1" type="SpotLight3D" parent="Environment/Lights" unique_id=828624614]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 1)
+light_energy = 20.0
+spot_range = 18.188
+spot_angle = 40.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Environment/Lights" unique_id=1356237734]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10, 10, 1)
+light_energy = 20.0
+spot_range = 18.188
+spot_angle = 40.0
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Environment/Lights" unique_id=88428840]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 20, 10, 1)
+visible = false
+light_energy = 20.0
+spot_range = 18.188
+spot_angle = 40.0
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Environment/Lights" unique_id=1468852553]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 9)
+light_energy = 20.0
+spot_range = 18.188
+spot_angle = 40.0
+
+[node name="SpotLight3D5" type="SpotLight3D" parent="Environment/Lights" unique_id=1438402551]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10, 10, 9)
+light_energy = 20.0
+spot_range = 18.188
+spot_angle = 40.0
+
+[node name="SpotLight3D6" type="SpotLight3D" parent="Environment/Lights" unique_id=1842409176]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 20, 10, 9)
+visible = false
+light_energy = 20.0
+spot_range = 18.188
+spot_angle = 40.0
+
+[node name="MainCamera" type="Camera3D" parent="." unique_id=2053262741]
+transform = Transform3D(1, 0, 0, 0, 0.766045, 0.642788, 0, -0.642788, 0.766045, 6, 10.5, 20)
+current = true
+fov = 40.0
+
+[node name="Effects" type="Node3D" parent="." unique_id=1215090300]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+
+[node name="IceMist" type="Node3D" parent="Effects" unique_id=473540824]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="IceMistVFX_01" parent="Effects/IceMist" unique_id=557030255 instance=ExtResource("2_dl8o0")]
+
+[node name="IceMistVFX_02" parent="Effects/IceMist" unique_id=1414639068 instance=ExtResource("3_28bme")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="IceMistVFX_03" parent="Effects/IceMist" unique_id=436610056 instance=ExtResource("4_coelt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="IceMistVFX_04" parent="Effects/IceMist" unique_id=1940849628 instance=ExtResource("5_o4cq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
+
+[node name="IceBall" type="Node3D" parent="Effects" unique_id=1337246984]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="IceBallVFX_01" parent="Effects/IceBall" unique_id=1256944248 instance=ExtResource("6_q74dy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="IceBallVFX_02" parent="Effects/IceBall" unique_id=538381988 instance=ExtResource("7_y628u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="IceBallVFX_03" parent="Effects/IceBall" unique_id=645554387 instance=ExtResource("8_kduhv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4)
+
+[node name="IceBallVFX_04" parent="Effects/IceBall" unique_id=1692285549 instance=ExtResource("9_pywj1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 4)
+preview = true
+
+[node name="IceShard" type="Node3D" parent="Effects" unique_id=1620562302]
+
+[node name="IceShardVFX_01" parent="Effects/IceShard" unique_id=1160101245 instance=ExtResource("10_aokbx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+
+[node name="IceShardVFX_02" parent="Effects/IceShard" unique_id=40998967 instance=ExtResource("11_glgrp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 7)
+
+[node name="IceShardVFX_03" parent="Effects/IceShard" unique_id=721768047 instance=ExtResource("12_q26w5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 7)
+preview = true
+
+[node name="IceShardVFX_04" parent="Effects/IceShard" unique_id=2108477068 instance=ExtResource("13_i7k45")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 7)
+preview = true
+
+[node name="IceArea" type="Node3D" parent="Effects" unique_id=588049302]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="IceAreaVFX_01" parent="Effects/IceArea" unique_id=1318373688 instance=ExtResource("14_gs6kc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="IceAreaVFX_02" parent="Effects/IceArea" unique_id=1107307841 instance=ExtResource("15_wcotl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 10)
+preview = true
+
+[node name="IceAreaVFX_03" parent="Effects/IceArea" unique_id=1554407219 instance=ExtResource("16_3mgj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 10)
+
+[node name="IceAreaVFX_04" parent="Effects/IceArea" unique_id=340166077 instance=ExtResource("17_esxve")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 10)
+
+[node name="IceCloud" type="Node3D" parent="Effects" unique_id=1627549957]
+
+[node name="IceCloudVFX_01" parent="Effects/IceCloud" unique_id=564000537 instance=ExtResource("18_hlr3x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1, 0)
+
+[node name="IceCloudVFX_02" parent="Effects/IceCloud" unique_id=1127758028 instance=ExtResource("19_db4ml")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1, 3)
+
+[node name="IceCloudVFX_03" parent="Effects/IceCloud" unique_id=714160441 instance=ExtResource("20_x81e2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1, 6)
+
+[node name="IceCloudVFX_04" parent="Effects/IceCloud" unique_id=1250813366 instance=ExtResource("21_ubwrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1, 10)
+
+[node name="Clouds" type="Node3D" parent="." unique_id=234483313]
+visible = false
+
+[node name="IceMist" type="Node3D" parent="Clouds" unique_id=294794703]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
+
+[node name="IceMistVFX_01" parent="Clouds/IceMist" unique_id=1980946273 instance=ExtResource("2_dl8o0")]
+
+[node name="IceMistVFX_02" parent="Clouds/IceMist" unique_id=895702391 instance=ExtResource("3_28bme")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="IceMistVFX_03" parent="Clouds/IceMist" unique_id=1303579312 instance=ExtResource("4_coelt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="IceMistVFX_04" parent="Clouds/IceMist" unique_id=1205180344 instance=ExtResource("5_o4cq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
+
+[node name="IceCloud" type="Node3D" parent="Clouds" unique_id=1241504119]
+
+[node name="IceCloudVFX_01" parent="Clouds/IceCloud" unique_id=1259058506 instance=ExtResource("18_hlr3x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="IceCloudVFX_02" parent="Clouds/IceCloud" unique_id=1160852629 instance=ExtResource("19_db4ml")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0)
+
+[node name="IceCloudVFX_03" parent="Clouds/IceCloud" unique_id=749974307 instance=ExtResource("20_x81e2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 0)
+
+[node name="IceCloudVFX_04" parent="Clouds/IceCloud" unique_id=86397528 instance=ExtResource("21_ubwrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1, 0)
+
+[node name="Shards" type="Node3D" parent="." unique_id=1812698765]
+
+[node name="IceBall" type="Node3D" parent="Shards" unique_id=1171133676]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="IceBallVFX_01" parent="Shards/IceBall" unique_id=787864570 instance=ExtResource("6_q74dy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+visible = false
+
+[node name="IceBallVFX_02" parent="Shards/IceBall" unique_id=1178593787 instance=ExtResource("7_y628u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+visible = false
+
+[node name="IceBallVFX_03" parent="Shards/IceBall" unique_id=56570575 instance=ExtResource("8_kduhv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4)
+visible = false
+
+[node name="IceBallVFX_04" parent="Shards/IceBall" unique_id=2033139757 instance=ExtResource("9_pywj1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 4)
+preview = true
+
+[node name="IceShard" type="Node3D" parent="Shards" unique_id=2136511231]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+
+[node name="IceShardVFX_01" parent="Shards/IceShard" unique_id=143926484 instance=ExtResource("10_aokbx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+
+[node name="IceShardVFX_02" parent="Shards/IceShard" unique_id=664129789 instance=ExtResource("11_glgrp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 7)
+
+[node name="IceShardVFX_03" parent="Shards/IceShard" unique_id=436857687 instance=ExtResource("12_q26w5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 7)
+preview = true
+
+[node name="IceShardVFX_04" parent="Shards/IceShard" unique_id=1983142475 instance=ExtResource("13_i7k45")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 7)
+preview = true
+
+[node name="IceArea" type="Node3D" parent="Shards" unique_id=2071318152]
+visible = false
+
+[node name="IceAreaVFX_01" parent="Shards/IceArea" unique_id=453257095 instance=ExtResource("14_gs6kc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="IceAreaVFX_02" parent="Shards/IceArea" unique_id=492278528 instance=ExtResource("15_wcotl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 10)
+preview = true
+
+[node name="IceAreaVFX_03" parent="Shards/IceArea" unique_id=37311198 instance=ExtResource("16_3mgj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 10)
+
+[node name="IceAreaVFX_04" parent="Shards/IceArea" unique_id=2133766314 instance=ExtResource("17_esxve")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 10)

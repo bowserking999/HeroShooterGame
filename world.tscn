@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dp2c2w5mrjny7"]
+[gd_scene load_steps=11 format=3 uid="uid://dp2c2w5mrjny7"]
 
 [ext_resource type="PackedScene" uid="uid://cr6sg4sj8vjfy" path="res://environment.tscn" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://bo5y0pglvi4w5" path="res://world.gd" id="1_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://ciwb0r4gmry7a" path="res://character_select_menu.tscn" id="2_charsel"]
 [ext_resource type="Texture2D" uid="uid://dl12606v27bbx" path="res://addons/kenney_particle_pack/circle_05.png" id="3_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://douw4khr83wp0" path="res://assets/BinbunVFX/magic_areas/effects/rim_area/rim_area_vfx_02.tscn" id="4_capture_rim"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fj7yv"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -33,6 +35,12 @@ shadow_enabled = true
 environment = SubResource("Environment_aqk2v")
 
 [node name="Environment" parent="." instance=ExtResource("1_f3sb7")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CapturePoint" type="Node3D" parent="."]
+
+[node name="RimAreaVFX_02" parent="CapturePoint" instance=ExtResource("4_capture_rim")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -64,6 +72,22 @@ text = "Main Menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TeamLabel" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Team"
+horizontal_alignment = 1
+
+[node name="TeamOption" type="OptionButton" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HeroLabel" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Hero"
+horizontal_alignment = 1
+
+[node name="HeroOption" type="OptionButton" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Host
@@ -77,6 +101,10 @@ text = "Join"
 layout_mode = 2
 placeholder_text = "Enter Address to Join Here"
 alignment = 1
+
+[node name="JoinLocalButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join Local"
 
 [node name="HUD" type="Control" parent="CanvasLayer"]
 visible = false
@@ -96,7 +124,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.03, 0.03)
-pivot_offset = Vector2(576, 324)
+pivot_offset = Vector2(960, 540)
 texture = ExtResource("3_tlwt5")
 stretch_mode = 5
 
@@ -105,22 +133,85 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 338.0
-offset_top = 549.0
-offset_right = -338.0
-offset_bottom = -43.0
+offset_left = 619.0
+offset_top = 977.0
+offset_right = -619.0
+offset_bottom = -58.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_aqk2v")
 theme_override_styles/fill = SubResource("StyleBoxFlat_036b0")
-max_value = 3.0
-value = 3.0
+max_value = 500.0
+value = 500.0
 show_percentage = false
+
+[node name="DebugReadout" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -44.0
+offset_right = 720.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.9, 0.92, 0.95, 0.9)
+theme_override_font_sizes/font_size = 14
+text = "debug"
+
+[node name="DeathOverlay" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/DeathOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DeathOverlay/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="DeathTitle" type="RichTextLabel" parent="CanvasLayer/DeathOverlay/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center][b]You died![/b][/center]"
+fit_content = true
+
+[node name="RespawnCountdown" type="Label" parent="CanvasLayer/DeathOverlay/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Respawning in 5..."
+horizontal_alignment = 1
+
+[node name="CharacterSelectMenu" parent="CanvasLayer" instance=ExtResource("2_charsel")]
+visible = false
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("uid://b250oylhyv124")
 spawn_path = NodePath("..")
 
+[node name="Greyboxing" type="Node3D" parent="."]
+visible = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Greyboxing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0772705, 3.8147e-06, 0.35936)
+size = Vector3(122.072, 1.66772, 58.2435)
+
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinLocalButton" to="." method="_on_join_local_button_pressed"]
 [connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

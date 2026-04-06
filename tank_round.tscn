@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://eolwr0v5hg78"]
+
+[ext_resource type="Script" path="res://tank_round.gd" id="1_round"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_round"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_round"]
+albedo_color = Color(1, 0.8, 0.2, 1)
+emission_enabled = true
+emission = 0.6
+
+[node name="TankRound" type="Node3D"]
+script = ExtResource("1_round")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_round")
+scale = Vector3(0.18, 0.18, 0.18)
+

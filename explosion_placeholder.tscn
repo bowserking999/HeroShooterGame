@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://be11jt0djh230"]
+
+[ext_resource type="Script" path="res://explosion_placeholder.gd" id="1_expl"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_expl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_expl"]
+albedo_color = Color(1, 0.55, 0.15, 1)
+emission_enabled = true
+emission = 0.9
+
+[node name="ExplosionPlaceholder" type="Node3D"]
+script = ExtResource("1_expl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_expl")
+surface_material_override/0 = SubResource("StandardMaterial3D_expl")
+

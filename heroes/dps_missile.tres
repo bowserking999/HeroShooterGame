@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="HeroResource" load_steps=2 format=3 uid="uid://dkl6fx7wkepqk"]
+
+[ext_resource type="Script" uid="uid://b2jniube2oykh" path="res://hero_resource.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+hero_id = "dps_missile"
+display_name = "Missile"
+archetype_id = "striker"
+run_speed = 10.0
+jump_velocity = 14.0
+default_weapon = 1
+max_health = 250
+model_scene_path = ""
+body_color = Color(1, 0.8, 0.55, 1)

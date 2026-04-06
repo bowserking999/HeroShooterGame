@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://n04pan77gujg"]
+
+[ext_resource type="Material" uid="uid://dpbllavr1fn56" path="res://assets/BinbunVFX/magic_orbs/src/material/magic_orb_basic/magic_orb_basic_05/magic_orb_basic_05_orbit.tres" id="1_cmkop"]
+[ext_resource type="Script" uid="uid://tb7n6ybv43ch" path="res://assets/BinbunVFX/shared/script/vfx_controller.gd" id="1_dytgk"]
+[ext_resource type="Material" uid="uid://dklkvs5k30kfj" path="res://assets/BinbunVFX/magic_orbs/src/material/magic_orb_basic/magic_orb_basic_05/magic_orb_basic_05_inner.tres" id="2_dytgk"]
+[ext_resource type="Material" uid="uid://ce8wt0frynmad" path="res://assets/BinbunVFX/magic_orbs/src/material/magic_orb_basic/magic_orb_basic_05/magic_orb_basic_05_glow.tres" id="3_w4axc"]
+[ext_resource type="Script" uid="uid://bdk8hhttligw" path="res://assets/BinbunVFX/shared/script/vfx_light.gd" id="4_ivcrt"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_x0xnc"]
+radius = 0.8
+height = 1.6
+radial_segments = 32
+rings = 16
+
+[sub_resource type="SphereMesh" id="SphereMesh_sjn5l"]
+radius = 0.85
+height = 1.7
+radial_segments = 32
+rings = 16
+
+[sub_resource type="SphereMesh" id="SphereMesh_wbcic"]
+radius = 0.6
+height = 1.2
+radial_segments = 32
+rings = 16
+
+[sub_resource type="SphereMesh" id="SphereMesh_c03ao"]
+radius = 0.75
+height = 1.4
+radial_segments = 32
+rings = 16
+
+[node name="MagicOrbBasicVFX_05" type="Node3D"]
+script = ExtResource("1_dytgk")
+primary_color = Color(0.79695, 0.99, 0.693, 1)
+secondary_color = Color(0, 0.95, 0.0475, 1)
+tertiary_color = Color(0.818397, 1, 0.829704, 1)
+light_color = Color(0, 0.94902, 0.0470588, 1)
+
+[node name="Orbit_01" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0, 0, 0)
+sorting_offset = 0.5
+material_override = ExtResource("1_cmkop")
+mesh = SubResource("SphereMesh_x0xnc")
+
+[node name="Orbit_02" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.10752e-08, 0.34202, -0.939693, 1.49502e-08, -0.939692, -0.34202, -1, 0, -4.37114e-08, 0, 0, 0)
+rotation_order = 5
+sorting_offset = 1.0
+material_override = ExtResource("1_cmkop")
+mesh = SubResource("SphereMesh_sjn5l")
+
+[node name="Inner" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_dytgk")
+mesh = SubResource("SphereMesh_wbcic")
+
+[node name="Glow" type="MeshInstance3D" parent="."]
+sorting_offset = -1.0
+material_override = ExtResource("3_w4axc")
+mesh = SubResource("SphereMesh_c03ao")
+
+[node name="Light" type="OmniLight3D" parent="."]
+light_color = Color(0, 0.94902, 0.0470588, 1)
+light_energy = 4.0
+script = ExtResource("4_ivcrt")
+base_energy = 4.0
+metadata/_custom_type_script = "uid://bdk8hhttligw"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
