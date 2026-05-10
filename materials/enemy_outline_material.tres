@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dp8i5okh7ayr1"]
+
+[ext_resource type="Shader" uid="uid://cfrh2b7x2enc5" path="res://materials/enemy_outline.gdshader" id="1_shader"]
+
+[resource]
+render_priority = 2
+shader = ExtResource("1_shader")
+shader_parameter/outline_color = Color(1, 0.32, 0.28, 1)
+shader_parameter/rim_power = 2.35
+shader_parameter/rim_broad_power = 1.15
+shader_parameter/rim_intensity = 1.65
+shader_parameter/rim_broad_mix = 0.42
+shader_parameter/emission_boost = 3.2

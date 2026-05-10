@@ -1,15 +1,20 @@
-[gd_resource type="Resource" script_class="HeroResource" load_steps=2 format=3 uid="uid://bva7qus6y5yw2"]
+[gd_resource type="Resource" script_class="HeroResource" load_steps=3 format=3 uid="uid://bva7qus6y5yw2"]
 
 [ext_resource type="Script" uid="uid://b2jniube2oykh" path="res://hero_resource.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bxdh84x53pmph" path="res://assets/icons/26.png" id="2_ult"]
 
 [resource]
 script = ExtResource("1_script")
 hero_id = "healer_orb"
 display_name = "Orb"
 archetype_id = "support"
-run_speed = 14.0
-jump_velocity = 10.0
+run_speed = 8.0
+jump_velocity = 9.0
 default_weapon = 2
 max_health = 250
 model_scene_path = ""
 body_color = Color(0.55, 0.8, 1, 1)
+ultimate_icon = ExtResource("2_ult")
+hud_ability_actions = PackedStringArray("", "", "secondary")
+hud_ability_icon_paths = PackedStringArray("", "", "res://assets/icons/13.png")
+hud_ability_cooldown_seconds = PackedFloat32Array(0, 0, 6)

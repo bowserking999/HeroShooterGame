@@ -12,6 +12,15 @@ const LAZER_HOSTILE_TERTIARY := Color(0.52, 0.06, 0.08, 1)
 
 var _shooter_peer_id: int = -1
 var _ally_cylinder_mat: StandardMaterial3D
+## When true (other players’ beams over RPC/GD-Sync), lerp muzzle/hit toward network targets each physics frame.
+var _beam_net_interpolated: bool = false
+var _target_start: Vector3 = Vector3.ZERO
+var _target_end: Vector3 = Vector3.ZERO
+var _smoothed_start: Vector3 = Vector3.ZERO
+var _smoothed_end: Vector3 = Vector3.ZERO
+var _have_smoothed_state: bool = false
+const BEAM_NET_SMOOTH_SPEED := 24.0
+const BEAM_NET_SNAP_DIST2 := 100.0 # 10m jump → snap (teleport / first spawn)
 
 
 func _ready() -> void:
@@ -22,6 +31,14 @@ func _ready() -> void:
 		if m is StandardMaterial3D:
 			_ally_cylinder_mat = (m as StandardMaterial3D).duplicate() as StandardMaterial3D
 			_mesh_inst.set_surface_override_material(0, _ally_cylinder_mat.duplicate())
+	set_physics_process(false)
+
+
+func set_beam_net_interpolated(enabled: bool) -> void:
+	_beam_net_interpolated = enabled
+	if not enabled:
+		_have_smoothed_state = false
+		set_physics_process(false)
 
 
 func set_shooter_peer_id(peer_id: int) -> void:
@@ -30,10 +47,10 @@ func set_shooter_peer_id(peer_id: int) -> void:
 
 
 func _get_local_player_node() -> Node:
-	var w := get_parent()
+	var w: Node = get_parent()
 	if w == null:
 		return null
-	return w.get_node_or_null(str(multiplayer.get_unique_id()))
+	return w.get_node_or_null(str(HeroNet.my_id()))
 
 
 func _is_laser_hostile_to_local_viewer() -> bool:
@@ -98,15 +115,51 @@ func _duplicate_shader_hostile(src: ShaderMaterial) -> ShaderMaterial:
 
 
 func update_beam(start_global: Vector3, end_global: Vector3) -> void:
-	var dir := end_global - start_global
-	var length := dir.length()
+	var dir: Vector3 = end_global - start_global
+	var length: float = dir.length()
+	if length < 0.02:
+		visible = false
+		_have_smoothed_state = false
+		set_physics_process(false)
+		return
+	if _beam_net_interpolated:
+		_target_start = start_global
+		_target_end = end_global
+		if not _have_smoothed_state:
+			_smoothed_start = start_global
+			_smoothed_end = end_global
+			_have_smoothed_state = true
+			_apply_beam_geometry(_smoothed_start, _smoothed_end)
+		elif _smoothed_start.distance_squared_to(_target_start) > BEAM_NET_SNAP_DIST2 \
+			or _smoothed_end.distance_squared_to(_target_end) > BEAM_NET_SNAP_DIST2:
+			_smoothed_start = _target_start
+			_smoothed_end = _target_end
+			_apply_beam_geometry(_smoothed_start, _smoothed_end)
+		set_physics_process(true)
+		return
+	set_physics_process(false)
+	_apply_beam_geometry(start_global, end_global)
+
+
+func _physics_process(delta: float) -> void:
+	if not _beam_net_interpolated or not _have_smoothed_state:
+		return
+	var k: float = 1.0 - exp(-BEAM_NET_SMOOTH_SPEED * delta)
+	_smoothed_start = _smoothed_start.lerp(_target_start, k)
+	_smoothed_end = _smoothed_end.lerp(_target_end, k)
+	_apply_beam_geometry(_smoothed_start, _smoothed_end)
+
+
+func _apply_beam_geometry(start_global: Vector3, end_global: Vector3) -> void:
+	var dir: Vector3 = end_global - start_global
+	var length: float = dir.length()
 	if length < 0.02:
 		visible = false
 		return
 	visible = true
 	global_position = start_global
-	var up := Vector3.UP
-	var dir_n := dir / length
+	var up: Vector3 = Vector3.UP
+	var dir_n: Vector3 = dir / length
 	if absf(dir_n.dot(Vector3.UP)) > 0.98:
 		up = Vector3.RIGHT
 	look_at(end_global, up)

@@ -1,15 +1,19 @@
-[gd_resource type="Resource" script_class="HeroResource" load_steps=2 format=3 uid="uid://dwwj4q11un40s"]
+[gd_resource type="Resource" script_class="HeroResource" load_steps=3 format=3 uid="uid://dwwj4q11un40s"]
 
 [ext_resource type="Script" uid="uid://b2jniube2oykh" path="res://hero_resource.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://vr3mgo6vr1mf" path="res://assets/icons/18.png" id="2_ult"]
 
 [resource]
 script = ExtResource("1_script")
 hero_id = "healer_medic"
 display_name = "Medic"
 archetype_id = "medic"
-run_speed = 14.0
-jump_velocity = 10.0
-default_weapon = 2
+run_speed = 8.0
+jump_velocity = 9.0
+default_weapon = 1
 max_health = 250
 model_scene_path = ""
 body_color = Color(0.45, 0.85, 0.55, 1)
+ultimate_icon = ExtResource("2_ult")
+hud_ability_actions = PackedStringArray("", "", "secondary")
+hud_ability_icon_paths = PackedStringArray("", "", "res://assets/icons/35.png")

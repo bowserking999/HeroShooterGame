@@ -1,15 +1,19 @@
-[gd_resource type="Resource" script_class="HeroResource" load_steps=2 format=3 uid="uid://ds825ff85xens"]
+[gd_resource type="Resource" script_class="HeroResource" load_steps=3 format=3 uid="uid://ds825ff85xens"]
 
 [ext_resource type="Script" uid="uid://b2jniube2oykh" path="res://hero_resource.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bhxfavnnm3r3v" path="res://assets/icons/41.png" id="2_ult"]
 
 [resource]
 script = ExtResource("1_script")
 hero_id = "dps_spring"
 display_name = "Spring"
 archetype_id = "striker"
-run_speed = 9.0
-jump_velocity = 12.0
+run_speed = 8.0
+jump_velocity = 13.0
 default_weapon = 1
 max_health = 275
 model_scene_path = ""
 body_color = Color(0.85, 0.35, 0.4, 1)
+ultimate_icon = ExtResource("2_ult")
+hud_ability_actions = PackedStringArray("", "", "")
+hud_ability_icon_paths = PackedStringArray("", "", "")

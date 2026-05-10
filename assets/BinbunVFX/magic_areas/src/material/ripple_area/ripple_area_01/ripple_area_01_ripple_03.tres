@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" format=3 uid="uid://cki8yawftmkim"]
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://cki8yawftmkim"]
 
 [ext_resource type="Shader" uid="uid://ctc5s68igpvj6" path="res://assets/BinbunVFX/shared/shader/transparent.gdshader" id="1_xyjdx"]
 [ext_resource type="Texture2D" uid="uid://bgrhnprudje44" path="res://assets/BinbunVFX/shared/texture/gradient/ring/ring_out_02.tres" id="2_xyjdx"]
@@ -27,14 +27,14 @@ shader_parameter/mask3_strength = 0.4
 shader_parameter/mask3_blend_mode = 5
 shader_parameter/mask3_radial = false
 shader_parameter/mask3_rotation = 0.0
-shader_parameter/billboard = false
-shader_parameter/displacement_scale = 0.0
-shader_parameter/displacement_offset = 0.5
 shader_parameter/primary_color = Color(0, 0.865229, 0.830306, 1)
 shader_parameter/secondary_color = Color(0.0223307, 0.196411, 0.417647, 1)
 shader_parameter/tertiary_color = Color(0, 0, 0, 1)
 shader_parameter/use_tertiary = false
 shader_parameter/color_smoothness = 0.5
+shader_parameter/billboard = false
+shader_parameter/displacement_scale = 0.0
+shader_parameter/displacement_offset = 0.5
 shader_parameter/time_scale = 1.0
 shader_parameter/texture_scale = Vector2(1, 1)
 shader_parameter/uv_alignment = 0

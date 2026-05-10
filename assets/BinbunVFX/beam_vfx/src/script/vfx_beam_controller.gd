@@ -287,9 +287,13 @@ func _enter_tree() -> void:
 
 func follow_node() -> void:
 	if !Engine.is_editor_hint() || preview:
-		var end_pos = end_point.global_position
-		beam_pivot.look_at(end_point.global_position)
-		
+		var end_pos: Vector3 = end_point.global_position
+		if beam_pivot.global_position.is_equal_approx(end_pos):
+			length = global_position.distance_to(end_pos)
+			beam_scalor.scale.z = length * open_amount
+			beam_end_pivot.global_position = end_pos
+			return
+		beam_pivot.look_at(end_pos)
 		length = global_position.distance_to(end_pos)
 		beam_scalor.scale.z = length * open_amount
 		

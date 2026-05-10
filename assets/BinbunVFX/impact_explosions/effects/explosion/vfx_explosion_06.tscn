@@ -357,6 +357,7 @@ _data = {
 }
 
 [node name="VFXExplosion_06" type="Node3D"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 script = ExtResource("1_dmlm6")
 primary_color = Color(1, 1, 0, 1)
 secondary_color = Color(1, 0, 0, 1)

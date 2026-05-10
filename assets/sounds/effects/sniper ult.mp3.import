@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c7j5ba6bwjof7"
+path="res://.godot/imported/sniper ult.mp3-9271533754a489171308a5afd3d16242.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/effects/sniper ult.mp3"
+dest_files=["res://.godot/imported/sniper ult.mp3-9271533754a489171308a5afd3d16242.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

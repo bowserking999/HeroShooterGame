@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://smokebomb001"]
+
+[ext_resource type="Script" path="res://smoke_bomb.gd" id="1_sb"]
+[ext_resource type="PackedScene" uid="uid://dhr3jtbbmtqvg" path="res://assets/BinbunVFX/smoke_effects/effects/smoke_thin/smoke_thin_vfx_04.tscn" id="2_trail"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_sb"]
+radius = 0.16
+height = 0.32
+radial_segments = 16
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="Mat_sb"]
+shading_mode = 0
+albedo_color = Color(0.98, 0.98, 1, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 1.4
+
+[node name="SmokeBomb" type="Node3D"]
+script = ExtResource("1_sb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_sb")
+surface_material_override/0 = SubResource("Mat_sb")
+
+[node name="TrailVFX" parent="." instance=ExtResource("2_trail")]

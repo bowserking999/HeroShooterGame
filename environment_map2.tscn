@@ -1,0 +1,6 @@
+[gd_scene load_steps=1 format=3]
+
+[ext_resource type="PackedScene" path="res://map2.blend" id="1_map2"]
+
+[node name="Environment" instance=ExtResource("1_map2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0)

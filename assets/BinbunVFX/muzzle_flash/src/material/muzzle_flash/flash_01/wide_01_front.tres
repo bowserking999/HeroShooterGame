@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" format=3 uid="uid://dws4vfcxkfdr7"]
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dws4vfcxkfdr7"]
 
 [ext_resource type="Shader" uid="uid://cpr71xsk1h60i" path="res://assets/BinbunVFX/muzzle_flash/shader/base.gdshader" id="1_4qkgx"]
 [ext_resource type="Texture2D" uid="uid://b17gt6rchx35c" path="res://assets/BinbunVFX/shared/texture/flash_front/flash_front_01.png" id="2_mvd0f"]

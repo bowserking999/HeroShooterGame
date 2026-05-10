@@ -1,0 +1,695 @@
+[gd_scene load_steps=13 format=3 uid="uid://c3mmsispuj7ce"]
+
+[ext_resource type="Script" path="res://gameplay_hud.gd" id="1_gphud"]
+[ext_resource type="Script" path="res://ring_meter.gd" id="2_ring"]
+[ext_resource type="Texture2D" uid="uid://dl12606v27bbx" path="res://addons/kenney_particle_pack/circle_05.png" id="3_dot"]
+[ext_resource type="Texture2D" uid="uid://cp8443byxncxb" path="res://icon.svg" id="4_icon"]
+[ext_resource type="Script" path="res://ultimate_inner_disc.gd" id="5_innerfill"]
+[ext_resource type="Texture2D" path="res://assets/icons/skull_1.png" id="6_sk1"]
+[ext_resource type="Texture2D" path="res://assets/icons/skull_2.png" id="7_sk2"]
+
+[sub_resource type="StyleBoxFlat" id="HealthBg"]
+bg_color = Color(0.22, 0.08, 0.08, 1)
+
+[sub_resource type="StyleBoxFlat" id="HealthFill"]
+bg_color = Color(0.12, 0.72, 0.28, 1)
+
+[sub_resource type="StyleBoxFlat" id="CapBarBg"]
+bg_color = Color(0.1, 0.11, 0.13, 1)
+
+[sub_resource type="StyleBoxFlat" id="CapMyFill"]
+bg_color = Color(0.18, 0.48, 0.88, 1)
+
+[sub_resource type="StyleBoxFlat" id="CapEnemyFill"]
+bg_color = Color(0.86, 0.32, 0.26, 1)
+
+[sub_resource type="StyleBoxFlat" id="HudPanel"]
+bg_color = Color(0.06, 0.07, 0.09, 0.78)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.18, 0.19, 0.22, 0.9)
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_gphud")
+
+[node name="Crosshair" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -26.0
+offset_right = 26.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_dot")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CapturePanel" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.18
+anchor_top = 0.0
+anchor_right = 0.82
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 10.0
+offset_right = 0.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CapturePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="CaptureHBox" type="HBoxContainer" parent="CapturePanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="LeftCol" type="VBoxContainer" parent="CapturePanel/MarginContainer/CaptureHBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="PresenceRow" type="HBoxContainer" parent="CapturePanel/MarginContainer/CaptureHBox/LeftCol"]
+custom_minimum_size = Vector2(200, 26)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+layout_direction = 2
+theme_override_constants/separation = 7
+
+[node name="Dot0" type="TextureRect" parent="CapturePanel/MarginContainer/CaptureHBox/LeftCol/PresenceRow"]
+visible = false
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("6_sk1")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(1, 1, 1, 1)
+
+[node name="Dot1" type="TextureRect" parent="CapturePanel/MarginContainer/CaptureHBox/LeftCol/PresenceRow"]
+visible = false
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("6_sk1")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(1, 1, 1, 1)
+
+[node name="Dot2" type="TextureRect" parent="CapturePanel/MarginContainer/CaptureHBox/LeftCol/PresenceRow"]
+visible = false
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("6_sk1")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(1, 1, 1, 1)
+
+[node name="TeamBar" type="ProgressBar" parent="CapturePanel/MarginContainer/CaptureHBox/LeftCol"]
+custom_minimum_size = Vector2(200, 18)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/background = SubResource("CapBarBg")
+theme_override_styles/fill = SubResource("CapMyFill")
+fill_mode = 1
+max_value = 100.0
+value = 0.0
+show_percentage = false
+
+[node name="BarPercent" type="Label" parent="CapturePanel/MarginContainer/CaptureHBox/LeftCol"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+horizontal_alignment = 1
+text = "0%"
+
+[node name="CenterBlock" type="Control" parent="CapturePanel/MarginContainer/CaptureHBox"]
+custom_minimum_size = Vector2(82, 82)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="CaptureIcon" type="TextureRect" parent="CapturePanel/MarginContainer/CaptureHBox/CenterBlock"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 9.0
+offset_right = -9.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_icon")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(1, 1, 1, 1)
+
+[node name="CaptureRing" type="Control" parent="CapturePanel/MarginContainer/CaptureHBox/CenterBlock"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_ring")
+pie_width_pixels = 5.5
+outline_width = 2.5
+fill_color = Color(0.22, 0.58, 0.96, 0.95)
+
+[node name="RightCol" type="VBoxContainer" parent="CapturePanel/MarginContainer/CaptureHBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="PresenceRow" type="HBoxContainer" parent="CapturePanel/MarginContainer/CaptureHBox/RightCol"]
+custom_minimum_size = Vector2(200, 26)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+theme_override_constants/separation = 7
+
+[node name="Dot0" type="TextureRect" parent="CapturePanel/MarginContainer/CaptureHBox/RightCol/PresenceRow"]
+visible = false
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("7_sk2")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(1, 1, 1, 1)
+
+[node name="Dot1" type="TextureRect" parent="CapturePanel/MarginContainer/CaptureHBox/RightCol/PresenceRow"]
+visible = false
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("7_sk2")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(1, 1, 1, 1)
+
+[node name="Dot2" type="TextureRect" parent="CapturePanel/MarginContainer/CaptureHBox/RightCol/PresenceRow"]
+visible = false
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("7_sk2")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(1, 1, 1, 1)
+
+[node name="TeamBar" type="ProgressBar" parent="CapturePanel/MarginContainer/CaptureHBox/RightCol"]
+custom_minimum_size = Vector2(200, 18)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/background = SubResource("CapBarBg")
+theme_override_styles/fill = SubResource("CapEnemyFill")
+max_value = 100.0
+value = 0.0
+show_percentage = false
+
+[node name="BarPercent" type="Label" parent="CapturePanel/MarginContainer/CaptureHBox/RightCol"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+horizontal_alignment = 1
+text = "0%"
+
+[node name="MatchStatusStrip" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = -100.0
+offset_top = 124.0
+offset_right = 100.0
+offset_bottom = 196.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="OvertimeBanner" type="PanelContainer" parent="MatchStatusStrip"]
+visible = false
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+theme_override_styles/panel = SubResource("HudPanel")
+
+[node name="OvertimeLabel" type="Label" parent="MatchStatusStrip/OvertimeBanner"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "OVERTIME"
+horizontal_alignment = 1
+
+[node name="MatchStartTimerBanner" type="PanelContainer" parent="MatchStatusStrip"]
+visible = false
+custom_minimum_size = Vector2(120, 38)
+layout_mode = 2
+theme_override_styles/panel = SubResource("HudPanel")
+
+[node name="MatchStartTimerLabel" type="Label" parent="MatchStatusStrip/MatchStartTimerBanner"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "0:20"
+horizontal_alignment = 1
+
+[node name="KillfeedPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -340.0
+offset_top = 14.0
+offset_right = -18.0
+offset_bottom = 248.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("HudPanel")
+
+[node name="MarginContainer" type="MarginContainer" parent="KillfeedPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="KillfeedLines" type="VBoxContainer" parent="KillfeedPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 0
+
+[node name="AmmoPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = -176.0
+offset_right = 160.0
+offset_bottom = -14.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("HudPanel")
+
+[node name="MarginContainer" type="MarginContainer" parent="AmmoPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="AmmoLabel" type="Label" parent="AmmoPanel/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 58
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "∞"
+
+[node name="AbilitiesRow" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -404.0
+offset_top = -198.0
+offset_right = -24.0
+offset_bottom = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 20
+alignment = 2
+
+[node name="Slot0" type="VBoxContainer" parent="AbilitiesRow"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="IconFrame" type="Control" parent="AbilitiesRow/Slot0"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="IconBg" type="ColorRect" parent="AbilitiesRow/Slot0/IconFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Icon" type="TextureRect" parent="AbilitiesRow/Slot0/IconFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_dot")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(1, 1, 1, 1)
+
+[node name="CooldownDim" type="ColorRect" parent="AbilitiesRow/Slot0/IconFrame"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.38, 0.38, 0.41, 0.78)
+
+[node name="CooldownLabel" type="Label" parent="AbilitiesRow/Slot0/IconFrame"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "0.0"
+
+[node name="BindLabel" type="Label" parent="AbilitiesRow/Slot0"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.35, 0.32, 1)
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+text = "1"
+
+[node name="Slot1" type="VBoxContainer" parent="AbilitiesRow"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="IconFrame" type="Control" parent="AbilitiesRow/Slot1"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="IconBg" type="ColorRect" parent="AbilitiesRow/Slot1/IconFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Icon" type="TextureRect" parent="AbilitiesRow/Slot1/IconFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_dot")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(1, 1, 1, 1)
+
+[node name="CooldownDim" type="ColorRect" parent="AbilitiesRow/Slot1/IconFrame"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.38, 0.38, 0.41, 0.78)
+
+[node name="CooldownLabel" type="Label" parent="AbilitiesRow/Slot1/IconFrame"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "0.0"
+
+[node name="BindLabel" type="Label" parent="AbilitiesRow/Slot1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.35, 0.32, 1)
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+text = "2"
+
+[node name="Slot2" type="VBoxContainer" parent="AbilitiesRow"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="IconFrame" type="Control" parent="AbilitiesRow/Slot2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="IconBg" type="ColorRect" parent="AbilitiesRow/Slot2/IconFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Icon" type="TextureRect" parent="AbilitiesRow/Slot2/IconFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_dot")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(1, 1, 1, 1)
+
+[node name="CooldownDim" type="ColorRect" parent="AbilitiesRow/Slot2/IconFrame"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.38, 0.38, 0.41, 0.78)
+
+[node name="CooldownLabel" type="Label" parent="AbilitiesRow/Slot2/IconFrame"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "0.0"
+
+[node name="BindLabel" type="Label" parent="AbilitiesRow/Slot2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.35, 0.32, 1)
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+text = "M2"
+
+[node name="BottomStack" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.322396
+anchor_top = 1.0
+anchor_right = 0.677604
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = -258.0
+offset_right = 0.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 9
+alignment = 1
+
+[node name="UltimateRow" type="VBoxContainer" parent="BottomStack"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="UltimateKeyLabel" type="Label" parent="BottomStack/UltimateRow"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.35, 0.32, 1)
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+text = "Q"
+
+[node name="UltimateMeter" type="Control" parent="BottomStack/UltimateRow"]
+custom_minimum_size = Vector2(132, 132)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="UltimateInnerFill" type="Control" parent="BottomStack/UltimateRow/UltimateMeter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_innerfill")
+pie_width_pixels = 8.0
+outline_width = 3.2
+
+[node name="UltimateIcon" type="TextureRect" parent="BottomStack/UltimateRow/UltimateMeter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_icon")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(1, 1, 1, 1)
+
+[node name="UltimateChargeDim" type="Control" parent="BottomStack/UltimateRow/UltimateMeter"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_innerfill")
+pie_width_pixels = 8.0
+outline_width = 3.2
+fill_color = Color(0.42, 0.43, 0.46, 0.38)
+
+[node name="RingMeter" type="Control" parent="BottomStack/UltimateRow/UltimateMeter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_ring")
+pie_width_pixels = 8.0
+outline_width = 3.2
+
+[node name="PctLabel" type="Label" parent="BottomStack/UltimateRow/UltimateMeter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+mouse_filter = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "0%"
+
+[node name="HealthBar" type="ProgressBar" parent="BottomStack"]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("HealthBg")
+theme_override_styles/fill = SubResource("HealthFill")
+max_value = 500.0
+value = 500.0
+show_percentage = false
+
+[node name="HealthNumbers" type="CenterContainer" parent="BottomStack"]
+layout_mode = 2
+size_flags_horizontal = 4
+custom_minimum_size = Vector2(0, 44)
+
+[node name="HBox" type="HBoxContainer" parent="BottomStack/HealthNumbers"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="CurrentLabel" type="Label" parent="BottomStack/HealthNumbers/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.92, 0.95, 1)
+theme_override_font_sizes/font_size = 42
+text = "250"
+
+[node name="MaxLabel" type="Label" parent="BottomStack/HealthNumbers/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.92, 0.95, 1)
+theme_override_font_sizes/font_size = 24
+text = "/250"

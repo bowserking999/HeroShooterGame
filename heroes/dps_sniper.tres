@@ -1,15 +1,35 @@
-[gd_resource type="Resource" script_class="HeroResource" load_steps=2 format=3 uid="uid://ds83co6gytwhs"]
+[gd_resource type="Resource" script_class="HeroResource" load_steps=3 format=3 uid="uid://ds83co6gytwhs"]
 
 [ext_resource type="Script" uid="uid://b2jniube2oykh" path="res://hero_resource.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cf6rxd6jb1jym" path="res://assets/icons/15.png" id="2_ult"]
 
 [resource]
 script = ExtResource("1_script")
 hero_id = "dps_sniper"
 display_name = "Sniper"
 archetype_id = "striker"
-run_speed = 10.0
-jump_velocity = 14.0
+run_speed = 8.0
+jump_velocity = 9.0
 default_weapon = 1
 max_health = 250
-model_scene_path = ""
+magazine_size = 10
+model_scene_path = "res://assets/models/sniper.glb"
+body_anim_library_source_hero_id = "dps_missile"
+body_anim_external_resources = {
+"Walk_cycle": "res://assets/animations/Walk.res",
+"Sniper_shoot": "res://assets/animations/Shoot.res",
+"jump": "res://assets/animations/jump.res",
+"jump_Cycle": "res://assets/animations/jump_Cycle.res",
+"jump_Landing": "res://assets/animations/jump_Landing.res"
+}
+body_anim_idle = "Walk_cycle"
+body_anim_move = "Walk_cycle"
+body_anim_shoot = "Sniper_shoot"
+body_anim_jump_start = "jump"
+body_anim_jump_loop = "jump_Cycle"
+body_anim_jump_land = "jump_Landing"
 body_color = Color(0.95, 0.45, 0.35, 1)
+ultimate_icon = ExtResource("2_ult")
+hud_ability_actions = PackedStringArray("", "", "secondary")
+hud_ability_icon_paths = PackedStringArray("", "", "res://assets/icons/10.png")
+hud_ability_cooldown_seconds = PackedFloat32Array(0, 0, 12)

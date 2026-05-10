@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://medic_burst.gd" id="1_medic_burst"]
+[ext_resource type="PackedScene" uid="uid://q8efih80ittq" path="res://assets/BinbunVFX/magic_projectiles/effects/mprojectile_basic/mprojectile_basic_vfx_04.tscn" id="2_burst_vfx"]
+
+[node name="MedicBurst" type="Node3D"]
+script = ExtResource("1_medic_burst")
+
+[node name="BurstVFX" parent="." instance=ExtResource("2_burst_vfx")]
+rotation = Vector3(0, 1.5708, 0)
+scale = Vector3(0.7, 0.7, 0.7)
+primary_color = Color(0.82, 0.2, 1, 1)
+secondary_color = Color(0.62, 0.12, 0.95, 1)
+tertiary_color = Color(0.32, 0.04, 0.74, 1)
+light_color = Color(0.82, 0.2, 1, 1)

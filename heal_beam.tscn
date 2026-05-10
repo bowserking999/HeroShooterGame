@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8healbeam01"]
+
+[ext_resource type="Script" path="res://heal_beam.gd" id="1_heal"]
+[ext_resource type="PackedScene" uid="uid://ccq0fkq8mphiq" path="res://assets/BinbunVFX/magic_projectiles/effects/mprojectile_wave/mprojectile_wave_vfx_02.tscn" id="2_wave"]
+
+[node name="HealBeam" type="Node3D"]
+script = ExtResource("1_heal")
+
+[node name="MuzzleWave" parent="." instance=ExtResource("2_wave")]

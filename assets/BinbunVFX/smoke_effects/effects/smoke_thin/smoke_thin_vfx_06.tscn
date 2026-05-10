@@ -1,11 +1,11 @@
-[gd_scene format=3 uid="uid://cu5wr1u2im25t"]
+[gd_scene load_steps=24 format=3 uid="uid://cu5wr1u2im25t"]
 
 [ext_resource type="Material" uid="uid://jyyij3pqbfwy" path="res://assets/BinbunVFX/smoke_effects/src/material/smoke_thin/smoke_thin_06.tres" id="1_binvc"]
 [ext_resource type="Script" uid="uid://bd1dsi6eq0a4p" path="res://assets/BinbunVFX/smoke_effects/src/script/vfx_smoke_controller.gd" id="1_ktbsl"]
 [ext_resource type="Material" uid="uid://bm033h1x2csu1" path="res://assets/BinbunVFX/smoke_effects/src/material/shadow_caster.tres" id="2_ktbsl"]
 
 [sub_resource type="Curve" id="Curve_tvfcg"]
-_data = [Vector2(0, 0.4), 0.0, 4.829702, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.8624723, 0.0, 0, 0]
+_data = [Vector2(0, 0.4), 0.0, 4.8297, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.86247, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_rga1v"]
@@ -18,14 +18,14 @@ colors = PackedColorArray(0, 0, 1, 1, 1, 0, 1, 1)
 gradient = SubResource("Gradient_qr5vx")
 
 [sub_resource type="Gradient" id="Gradient_pmrlt"]
-offsets = PackedFloat32Array(0, 0.9508197)
+offsets = PackedFloat32Array(0, 0.95082)
 colors = PackedColorArray(1, 0, 0, 1, 1, 0, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_56ykj"]
 gradient = SubResource("Gradient_pmrlt")
 
 [sub_resource type="Curve" id="Curve_maohq"]
-_data = [Vector2(0, 0.29213488), 0.0, 1.3188686, 0, 0, Vector2(1, 1), 1.2132004, 0.0, 0, 0]
+_data = [Vector2(0, 0.292135), 0.0, 1.31887, 0, 0, Vector2(1, 1), 1.2132, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_m8igd"]
@@ -37,8 +37,8 @@ spread = 8.0
 initial_velocity_min = 3.5
 initial_velocity_max = 3.5
 gravity = Vector3(0, 0, 0)
-scale_min = 0.79999995
-scale_max = 1.1999999
+scale_min = 0.8
+scale_max = 1.2
 scale_curve = SubResource("CurveTexture_m8igd")
 color_ramp = SubResource("GradientTexture1D_56ykj")
 color_initial_ramp = SubResource("GradientTexture1D_kuyxh")
@@ -50,7 +50,7 @@ subdivide_width = 16
 subdivide_depth = 16
 
 [sub_resource type="Curve" id="Curve_rh6rq"]
-_data = [Vector2(0, 0.4), 0.0, 4.829702, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(0.9932432, 0.011235952), -2.5748465, 0.0, 0, 0]
+_data = [Vector2(0, 0.4), 0.0, 4.8297, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(0.993243, 0.011236), -2.57485, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_akd53"]
@@ -64,13 +64,13 @@ gradient = SubResource("Gradient_4ilat")
 
 [sub_resource type="Gradient" id="Gradient_y655r"]
 offsets = PackedFloat32Array(0, 0.2, 0.5, 0.8)
-colors = PackedColorArray(1, 0, 1, 1, 1, 0, 0.4666667, 1, 1, 0, 0.19999999, 1, 1, 0, 0, 1)
+colors = PackedColorArray(1, 0, 1, 1, 1, 0, 0.466667, 1, 1, 0, 0.2, 1, 1, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1m0kk"]
 gradient = SubResource("Gradient_y655r")
 
 [sub_resource type="Curve" id="Curve_mvn3k"]
-_data = [Vector2(0, 0.29213488), 0.0, 1.3188686, 0, 0, Vector2(0.695946, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -8.106748, 0.0, 0, 0]
+_data = [Vector2(0, 0.292135), 0.0, 1.31887, 0, 0, Vector2(0.695946, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -8.10675, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_gv4my"]
@@ -81,8 +81,8 @@ direction = Vector3(0, 1, 0)
 spread = 4.0
 initial_velocity_min = 3.0
 initial_velocity_max = 4.0
-radial_velocity_min = -0.50002235
-radial_velocity_max = -2.2351742e-05
+radial_velocity_min = -0.500022
+radial_velocity_max = -2.23517e-05
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_gv4my")
 color_ramp = SubResource("GradientTexture1D_1m0kk")
@@ -94,18 +94,18 @@ height = 1.5
 radial_segments = 16
 rings = 8
 
-[node name="SmokeThinVFX_06" type="Node3D" unique_id=1022955448]
+[node name="SmokeThinVFX_06" type="Node3D"]
 script = ExtResource("1_ktbsl")
 emission_amount = 32
 primary_color = Color(0.35, 0.35, 0.35, 1)
-secondary_color = Color(0.29411766, 0.29411766, 0.29411766, 1)
+secondary_color = Color(0.294118, 0.294118, 0.294118, 1)
 tertiary_color = Color(0.2, 0.2, 0.2, 1)
 roughness = 0.0
 alpha_mode = 3
 dither_cutoff = 1.0
 proximity_fade = true
 
-[node name="Smoke" type="GPUParticles3D" parent="." unique_id=2047148353]
+[node name="Smoke" type="GPUParticles3D" parent="."]
 material_override = ExtResource("1_binvc")
 cast_shadow = 2
 amount = 32
@@ -115,7 +115,7 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_v0mrj")
 draw_pass_1 = SubResource("QuadMesh_wms83")
 
-[node name="ShadowCaster" type="GPUParticles3D" parent="." unique_id=1336109689 groups=["ShadowCaster"]]
+[node name="ShadowCaster" type="GPUParticles3D" parent="." groups=["ShadowCaster"]]
 material_override = ExtResource("2_ktbsl")
 transparency = 1.0
 amount = 16

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8sniperultbeam01"]
+
+[ext_resource type="Script" path="res://sniper_ult_beam.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://dr1o7s7m7c82g" path="res://assets/BinbunVFX/beam_vfx/effects/beam/beam_vfx_08.tscn" id="2_beam"]
+
+[node name="SniperUltBeam" type="Node3D"]
+script = ExtResource("1_script")
+
+[node name="BeamEndTarget" type="Marker3D" parent="."]
+
+[node name="BeamVFX_08" parent="." instance=ExtResource("2_beam")]

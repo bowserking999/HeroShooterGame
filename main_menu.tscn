@@ -1,0 +1,231 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkeh4t68xedpo"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_preview"]
+bg_color = Color(0.08, 0.09, 0.13, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.22, 0.24, 0.32, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_debug_btn"]
+bg_color = Color(0.88, 0.76, 0.15, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_debug_btn_hover"]
+bg_color = Color(0.95, 0.85, 0.28, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="MainMenuRoot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.03, 0.04, 0.07, 1)
+
+[node name="MarginRoot" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 22
+
+[node name="MainColumn" type="VBoxContainer" parent="MarginRoot"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="TopStrip" type="Control" parent="MarginRoot/MainColumn"]
+custom_minimum_size = Vector2(0, 132)
+layout_mode = 2
+
+[node name="TitleCenter" type="CenterContainer" parent="MarginRoot/MainColumn/TopStrip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TitleLabel" type="Label" parent="MarginRoot/MainColumn/TopStrip/TitleCenter"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.97, 0.99, 1)
+theme_override_font_sizes/font_size = 96
+text = "ROBOT TAKEOVER!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitButton" type="Button" parent="MarginRoot/MainColumn/TopStrip"]
+custom_minimum_size = Vector2(200, 76)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -204.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 38
+text = "Quit"
+
+[node name="BodyRow" type="HBoxContainer" parent="MarginRoot/MainColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 32
+
+[node name="PreviewPanel" type="PanelContainer" parent="MarginRoot/MainColumn/BodyRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_preview")
+
+[node name="PreviewLabel" type="Label" parent="MarginRoot/MainColumn/BodyRow/PreviewPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.72, 0.74, 0.82, 1)
+theme_override_font_sizes/font_size = 28
+text = "Character preview"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="RightColumn" type="VBoxContainer" parent="MarginRoot/MainColumn/BodyRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.0
+theme_override_constants/separation = 12
+
+[node name="PlayAlignCenter" type="CenterContainer" parent="MarginRoot/MainColumn/BodyRow/RightColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayStack" type="VBoxContainer" parent="MarginRoot/MainColumn/BodyRow/RightColumn/PlayAlignCenter"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="UsernameEntry" type="LineEdit" parent="MarginRoot/MainColumn/BodyRow/RightColumn/PlayAlignCenter/PlayStack"]
+custom_minimum_size = Vector2(560, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+placeholder_text = "Enter username here"
+alignment = 1
+max_length = 20
+
+[node name="PlayButton" type="Button" parent="MarginRoot/MainColumn/BodyRow/RightColumn/PlayAlignCenter/PlayStack"]
+custom_minimum_size = Vector2(560, 172)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 72
+text = "Play"
+
+[node name="PlayTimerHint" type="Label" parent="MarginRoot/MainColumn/BodyRow/RightColumn/PlayAlignCenter/PlayStack"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62, 0.65, 0.74, 1)
+theme_override_font_sizes/font_size = 44
+text = "0:00"
+horizontal_alignment = 1
+
+[node name="BottomBar" type="HBoxContainer" parent="MarginRoot/MainColumn"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="SensitivityBlock" type="VBoxContainer" parent="MarginRoot/MainColumn/BottomBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.0
+theme_override_constants/separation = 8
+
+[node name="SensitivityLabel" type="Label" parent="MarginRoot/MainColumn/BottomBar/SensitivityBlock"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.87, 0.92, 1)
+text = "Sensitivity"
+
+[node name="SensitivityHBox" type="HBoxContainer" parent="MarginRoot/MainColumn/BottomBar/SensitivityBlock"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="MouseSensitivitySlider" type="HSlider" parent="MarginRoot/MainColumn/BottomBar/SensitivityBlock/SensitivityHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 100.0
+value = 50.0
+
+[node name="MouseSensitivityValue" type="Label" parent="MarginRoot/MainColumn/BottomBar/SensitivityBlock/SensitivityHBox"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.87, 0.92, 1)
+text = "50"
+horizontal_alignment = 2
+
+[node name="DebugMenuCenter" type="CenterContainer" parent="MarginRoot/MainColumn/BottomBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.0
+
+[node name="DebugMenuButton" type="Button" parent="MarginRoot/MainColumn/BottomBar/DebugMenuCenter"]
+custom_minimum_size = Vector2(220, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15, 0.12, 0.04, 1)
+theme_override_colors/font_hover_color = Color(0.15, 0.12, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.15, 0.12, 0.04, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_debug_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_debug_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_debug_btn")
+text = "Debug Menu"
+
+[node name="LobbyColumn" type="VBoxContainer" parent="MarginRoot/MainColumn/BottomBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.0
+theme_override_constants/separation = 12
+
+[node name="HostLobbyButton" type="Button" parent="MarginRoot/MainColumn/BottomBar/LobbyColumn"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+text = "Host lobby"
+
+[node name="FindLobbiesButton" type="Button" parent="MarginRoot/MainColumn/BottomBar/LobbyColumn"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+text = "Find lobbies"
+
+[connection signal="pressed" from="MarginRoot/MainColumn/TopStrip/QuitButton" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MarginRoot/MainColumn/BodyRow/RightColumn/PlayAlignCenter/PlayStack/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="value_changed" from="MarginRoot/MainColumn/BottomBar/SensitivityBlock/SensitivityHBox/MouseSensitivitySlider" to="." method="_on_mouse_sensitivity_slider_value_changed"]
+[connection signal="pressed" from="MarginRoot/MainColumn/BottomBar/LobbyColumn/HostLobbyButton" to="." method="_on_host_lobby_pressed"]
+[connection signal="pressed" from="MarginRoot/MainColumn/BottomBar/LobbyColumn/FindLobbiesButton" to="." method="_on_find_lobbies_pressed"]

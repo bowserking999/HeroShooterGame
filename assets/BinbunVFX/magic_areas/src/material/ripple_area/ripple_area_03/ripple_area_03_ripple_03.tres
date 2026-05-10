@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" format=3 uid="uid://dvom205bcbcof"]
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dvom205bcbcof"]
 
 [ext_resource type="Shader" uid="uid://ctc5s68igpvj6" path="res://assets/BinbunVFX/shared/shader/transparent.gdshader" id="1_mxthk"]
 [ext_resource type="Texture2D" uid="uid://m3fbr4afc2d7" path="res://assets/BinbunVFX/shared/texture/noise/cell/cell_inverted_01.tres" id="2_mxthk"]
@@ -37,14 +37,14 @@ shader_parameter/mask3_strength = 0.4
 shader_parameter/mask3_blend_mode = 5
 shader_parameter/mask3_radial = false
 shader_parameter/mask3_rotation = 0.0
-shader_parameter/billboard = false
-shader_parameter/displacement_scale = 0.0
-shader_parameter/displacement_offset = 0.5
 shader_parameter/primary_color = Color(1, 0.882353, 0.87451, 1)
 shader_parameter/secondary_color = Color(0.466667, 0.513726, 1, 1)
 shader_parameter/tertiary_color = Color(0, 0, 0, 1)
 shader_parameter/use_tertiary = false
 shader_parameter/color_smoothness = 0.5
+shader_parameter/billboard = false
+shader_parameter/displacement_scale = 0.0
+shader_parameter/displacement_offset = 0.5
 shader_parameter/time_scale = 1.0
 shader_parameter/texture_scale = Vector2(1, 1)
 shader_parameter/uv_alignment = 0

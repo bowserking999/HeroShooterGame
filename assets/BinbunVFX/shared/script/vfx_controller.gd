@@ -33,7 +33,9 @@ class_name VFXController
 	set(value):
 		speed_scale = value
 		_set_shader_params("time_scale", speed_scale)
-		_get_anim().speed_scale = value
+		var ap: AnimationPlayer = _get_anim()
+		if ap != null:
+			ap.speed_scale = value
 		for p in _get_particles(): if is_instance_valid(p): p.speed_scale = value
 
 @export_group("Colors")
@@ -126,33 +128,68 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	if autoplay: play()
+	if autoplay:
+		play()
 
 func _enter_tree() -> void:
-	if autoplay: preview = true
+	if autoplay:
+		preview = true
 
-func play():
-	var anim : AnimationPlayer = _get_anim()
-	
-	if !one_shot:
-		if reset_particles: _reset_particles()
-		anim.play("main")
+func play() -> void:
+	var anim: AnimationPlayer = _get_anim()
+	var clip: StringName = &""
+	if anim != null:
+		clip = _resolve_animation_to_play(anim)
+	if anim == null or String(clip).is_empty():
+		# Some shipped scenes (e.g. big_flash_04) keep an empty AnimationPlayer; still drive GPUParticles3D.
+		var plist: Array[GPUParticles3D] = _get_particles()
+		if plist.is_empty():
+			if anim == null:
+				return
+			push_warning("VFXController (%s): AnimationPlayer has no usable clips (expected 'main' or 'oneshot')." % str(get_path()))
+			return
+		_play_particles_direct()
+		return
+	if not one_shot:
+		if reset_particles:
+			_reset_particles()
+		anim.play(clip)
 		anim.seek(0.0)
-		await _get_anim().animation_finished
+		await anim.animation_finished
 		if Engine.is_editor_hint() && !preview:
 			return
 		play()
 	else:
 		_reset_particles()
-		if anim.has_animation("oneshot"):
-			anim.play("oneshot")
-			anim.seek(0.0)
-		else:
-			anim.play("main")
+		anim.play(clip)
+		anim.seek(0.0)
+
+
+func _play_particles_direct() -> void:
+	_reset_particles()
+	for p in _get_particles():
+		if is_instance_valid(p):
+			p.emitting = true
 
 ## Util
+func _resolve_animation_to_play(anim: AnimationPlayer) -> StringName:
+	if not one_shot:
+		if anim.has_animation(&"main"):
+			return &"main"
+	else:
+		if anim.has_animation(&"oneshot"):
+			return &"oneshot"
+		if anim.has_animation(&"main"):
+			return &"main"
+	var names: PackedStringArray = anim.get_animation_list()
+	if names.size() > 0:
+		return names[0]
+	return &""
+
+
 func _get_anim() -> AnimationPlayer:
-	return get_node("AnimationPlayer")
+	var n: Node = get_node_or_null("AnimationPlayer")
+	return n as AnimationPlayer
 
 func _get_particles() -> Array[GPUParticles3D]:
 	var result : Array[GPUParticles3D] = []

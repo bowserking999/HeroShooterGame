@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" format=3 uid="uid://crt7664ghhwoq"]
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://crt7664ghhwoq"]
 
 [ext_resource type="Shader" uid="uid://ctc5s68igpvj6" path="res://assets/BinbunVFX/shared/shader/transparent.gdshader" id="1_pit88"]
 [ext_resource type="Texture2D" uid="uid://bo6l2kv3bitgd" path="res://assets/BinbunVFX/shared/texture/noise/pingpong/pingpong_02.tres" id="2_pit88"]
@@ -47,14 +47,14 @@ shader_parameter/mask3_strength = 1.0
 shader_parameter/mask3_blend_mode = 2
 shader_parameter/mask3_radial = true
 shader_parameter/mask3_rotation = 0.0
-shader_parameter/billboard = false
-shader_parameter/displacement_scale = 0.0
-shader_parameter/displacement_offset = 0.5
 shader_parameter/primary_color = Color(0.8, 0.878431, 1, 1)
 shader_parameter/secondary_color = Color(0.411765, 0.752941, 1, 1)
 shader_parameter/tertiary_color = Color(0, 0, 0, 1)
 shader_parameter/use_tertiary = false
 shader_parameter/color_smoothness = 0.5
+shader_parameter/billboard = false
+shader_parameter/displacement_scale = 0.0
+shader_parameter/displacement_offset = 0.5
 shader_parameter/time_scale = 1.0
 shader_parameter/texture_scale = Vector2(1, 1)
 shader_parameter/uv_alignment = 0

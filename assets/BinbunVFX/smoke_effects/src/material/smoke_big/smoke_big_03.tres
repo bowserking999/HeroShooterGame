@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" format=3 uid="uid://dknrkib8rwj12"]
+[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://dknrkib8rwj12"]
 
 [ext_resource type="Shader" uid="uid://bqm1s0sca3srw" path="res://assets/BinbunVFX/smoke_effects/src/shader/smoke.gdshader" id="1_5pge1"]
 [ext_resource type="Texture2D" uid="uid://dxnxeedgoka4h" path="res://assets/BinbunVFX/shared/texture/noise/pingpong/pingpong_simple_02.tres" id="2_bjsuq"]
@@ -11,10 +11,10 @@ fractal_octaves = 2
 fractal_ping_pong_strength = 1.0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6tidj"]
-noise = SubResource("FastNoiseLite_rggxn")
-seamless = true
 invert = true
+seamless = true
 seamless_blend_skirt = 0.2
+noise = SubResource("FastNoiseLite_rggxn")
 
 [sub_resource type="Gradient" id="Gradient_358nw"]
 interpolation_color_space = 1
@@ -34,12 +34,12 @@ fractal_octaves = 2
 fractal_ping_pong_strength = 1.0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ugsnl"]
-noise = SubResource("FastNoiseLite_6tidj")
-seamless = true
 invert = true
-as_normal_map = true
+seamless = true
 seamless_blend_skirt = 0.2
+as_normal_map = true
 bump_strength = 64.0
+noise = SubResource("FastNoiseLite_6tidj")
 
 [resource]
 render_priority = 0
@@ -57,11 +57,11 @@ shader_parameter/use_mask3 = true
 shader_parameter/mask3_texture = SubResource("GradientTexture2D_374nh")
 shader_parameter/mask3_scroll = Vector2(0, 0)
 shader_parameter/mask3_scale = Vector2(1, 1)
-shader_parameter/mask3_strength = 0.999999977648
+shader_parameter/mask3_strength = 1.0
 shader_parameter/mask3_blend_mode = 2
-shader_parameter/primary_color = Color(0.29586637, 0.29586664, 0.2958662, 1)
-shader_parameter/secondary_color = Color(0.29411766, 0.29411766, 0.29411766, 1)
-shader_parameter/tertiary_color = Color(0.1, 0.09285, 0.087000005, 1)
+shader_parameter/primary_color = Color(0.295866, 0.295867, 0.295866, 1)
+shader_parameter/secondary_color = Color(0.294118, 0.294118, 0.294118, 1)
+shader_parameter/tertiary_color = Color(0.1, 0.09285, 0.087, 1)
 shader_parameter/color_smoothness = 0.5
 shader_parameter/billboard = false
 shader_parameter/displacement_scale = 0.0

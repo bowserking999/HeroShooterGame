@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" format=3 uid="uid://b6wndai1i7dhj"]
+[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://b6wndai1i7dhj"]
 
 [ext_resource type="Shader" uid="uid://bqm1s0sca3srw" path="res://assets/BinbunVFX/smoke_effects/src/shader/smoke.gdshader" id="1_374nh"]
 [ext_resource type="Texture2D" uid="uid://caa3q1x4sy2r" path="res://assets/BinbunVFX/shared/texture/noise/warp/warp_blotch_01.tres" id="2_358nw"]
@@ -11,9 +11,9 @@ fractal_octaves = 1
 fractal_ping_pong_strength = 1.0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_358nw"]
-noise = SubResource("FastNoiseLite_ka0x1")
-seamless = true
 invert = true
+seamless = true
+noise = SubResource("FastNoiseLite_ka0x1")
 
 [sub_resource type="Gradient" id="Gradient_358nw"]
 interpolation_color_space = 1
@@ -33,11 +33,11 @@ fractal_octaves = 1
 fractal_ping_pong_strength = 1.0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_374nh"]
-noise = SubResource("FastNoiseLite_358nw")
-seamless = true
 invert = true
+seamless = true
 as_normal_map = true
 bump_strength = 64.0
+noise = SubResource("FastNoiseLite_358nw")
 
 [resource]
 render_priority = 0
@@ -55,11 +55,11 @@ shader_parameter/use_mask3 = true
 shader_parameter/mask3_texture = SubResource("GradientTexture2D_374nh")
 shader_parameter/mask3_scroll = Vector2(0, 0)
 shader_parameter/mask3_scale = Vector2(1, 1)
-shader_parameter/mask3_strength = 0.999999977648
+shader_parameter/mask3_strength = 1.0
 shader_parameter/mask3_blend_mode = 2
-shader_parameter/primary_color = Color(0.29586637, 0.29586664, 0.2958662, 1)
-shader_parameter/secondary_color = Color(0.29411766, 0.29411766, 0.29411766, 1)
-shader_parameter/tertiary_color = Color(0.1, 0.09285, 0.087000005, 1)
+shader_parameter/primary_color = Color(0.295866, 0.295867, 0.295866, 1)
+shader_parameter/secondary_color = Color(0.294118, 0.294118, 0.294118, 1)
+shader_parameter/tertiary_color = Color(0.1, 0.09285, 0.087, 1)
 shader_parameter/color_smoothness = 0.5
 shader_parameter/billboard = false
 shader_parameter/displacement_scale = 0.0

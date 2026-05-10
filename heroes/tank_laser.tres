@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="HeroResource" load_steps=2 format=3 uid="uid://bjnmshd2df5aa"]
+[gd_resource type="Resource" script_class="HeroResource" load_steps=3 format=3 uid="uid://bjnmshd2df5aa"]
 
 [ext_resource type="Script" uid="uid://b2jniube2oykh" path="res://hero_resource.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dp5s6j540j7pr" path="res://assets/icons/46.png" id="2_ult"]
 
 [resource]
 script = ExtResource("1_script")
@@ -13,3 +14,7 @@ default_weapon = 1
 max_health = 500
 model_scene_path = ""
 body_color = Color(0.65, 0.55, 0.5, 1)
+ultimate_icon = ExtResource("2_ult")
+hud_ability_actions = PackedStringArray("secondary", "", "")
+hud_ability_icon_paths = PackedStringArray("res://assets/icons/43.png", "", "")
+hud_ability_cooldown_seconds = PackedFloat32Array(2, 0, 0)

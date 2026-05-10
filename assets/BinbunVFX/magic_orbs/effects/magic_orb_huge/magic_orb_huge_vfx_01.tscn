@@ -149,6 +149,7 @@ light_color = Color(1, 0.905882, 0, 1)
 light_energy = 8.0
 
 [node name="Flare" type="MeshInstance3D" parent="."]
+visible = false
 sorting_offset = -1.0
 material_override = ExtResource("1_g2wo4")
 mesh = SubResource("QuadMesh_lfegx")
@@ -156,6 +157,7 @@ mesh = SubResource("QuadMesh_lfegx")
 [node name="Glow" type="MeshInstance3D" parent="."]
 sorting_offset = 1.0
 material_override = ExtResource("2_g2wo4")
+transparency = 1.0
 mesh = SubResource("SphereMesh_lfegx")
 
 [node name="Light" type="OmniLight3D" parent="."]

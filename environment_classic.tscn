@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://0td2endyojbc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_classic_floor"]
+albedo_color = Color(0.45, 0.45, 0.48, 1)
+roughness = 0.92
+
+[node name="Environment" type="Node3D"]
+
+[node name="ArenaFloor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0772705, 3.8147e-06, 0.35936)
+use_collision = true
+size = Vector3(122.072, 1.66772, 58.2435)
+material = SubResource("StandardMaterial3D_classic_floor")

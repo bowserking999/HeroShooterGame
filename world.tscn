@@ -1,10 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://dp2c2w5mrjny7"]
 
+[ext_resource type="Script" uid="uid://c7p8q2m4lanx" path="res://capture_point.gd" id="1_capture_pt"]
 [ext_resource type="PackedScene" uid="uid://cr6sg4sj8vjfy" path="res://environment.tscn" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://bo5y0pglvi4w5" path="res://world.gd" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://ciwb0r4gmry7a" path="res://character_select_menu.tscn" id="2_charsel"]
-[ext_resource type="Texture2D" uid="uid://dl12606v27bbx" path="res://addons/kenney_particle_pack/circle_05.png" id="3_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://exe3nn0ho353" path="res://prematch_character_select.tscn" id="3_prematch"]
 [ext_resource type="PackedScene" uid="uid://douw4khr83wp0" path="res://assets/BinbunVFX/magic_areas/effects/rim_area/rim_area_vfx_02.tscn" id="4_capture_rim"]
+[ext_resource type="PackedScene" uid="uid://c3mmsispuj7ce" path="res://hud_gameplay.tscn" id="5_hud"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fj7yv"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -17,12 +19,6 @@ sky_material = SubResource("ProceduralSkyMaterial_fj7yv")
 background_mode = 2
 sky = SubResource("Sky_tlwt5")
 tonemap_mode = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqk2v"]
-bg_color = Color(0.897639, 0.0622155, 0.0368331, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_036b0"]
-bg_color = Color(0, 0.894118, 0.113725, 1)
 
 [node name="World" type="Node"]
 script = ExtResource("1_tlwt5")
@@ -38,9 +34,10 @@ environment = SubResource("Environment_aqk2v")
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CapturePoint" type="Node3D" parent="."]
+script = ExtResource("1_capture_pt")
 
 [node name="RimAreaVFX_02" parent="CapturePoint" instance=ExtResource("4_capture_rim")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.08, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -68,9 +65,33 @@ theme_override_constants/separation = 15
 
 [node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Main Menu"
+text = "Debug Menu"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ReturnToMainMenuButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Return to main menu"
+
+[node name="MouseSensitivityLabel" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mouse sensitivity (50 = default)"
+horizontal_alignment = 1
+
+[node name="MouseSensitivityHBox" type="HBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MouseSensitivitySlider" type="HSlider" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/MouseSensitivityHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 50.0
+
+[node name="MouseSensitivityValue" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/MouseSensitivityHBox"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "50"
+horizontal_alignment = 2
 
 [node name="TeamLabel" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -80,6 +101,16 @@ horizontal_alignment = 1
 [node name="TeamOption" type="OptionButton" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="UsernameLabel" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Username"
+horizontal_alignment = 1
+
+[node name="UsernameEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter username (optional)"
+alignment = 1
+
 [node name="HeroLabel" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Hero"
@@ -87,6 +118,66 @@ horizontal_alignment = 1
 
 [node name="HeroOption" type="OptionButton" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="MapLabel" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Map (host only)"
+horizontal_alignment = 1
+
+[node name="MapOption" type="OptionButton" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MatchModeLabel" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Match mode (host / offline)"
+horizontal_alignment = 1
+
+[node name="MatchModeActualCheck" type="CheckButton" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Actual match — 100% capture wins, 20s start countdown"
+
+[node name="MatchmakingHBox" type="HBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="MatchmakingButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/MatchmakingHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Start Matchmaking"
+
+[node name="MatchmakingTimerLabel" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/MatchmakingHBox"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+
+[node name="MatchmakingCapLabel" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Players to start match (2–6)"
+horizontal_alignment = 1
+
+[node name="MatchmakingCapHBox" type="HBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MatchmakingCapMin" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/MatchmakingCapHBox"]
+layout_mode = 2
+text = "2"
+
+[node name="MatchmakingCapSlider" type="HSlider" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/MatchmakingCapHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 2.0
+max_value = 6.0
+value = 6.0
+
+[node name="MatchmakingCapMax" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/MatchmakingCapHBox"]
+layout_mode = 2
+text = "6"
+
+[node name="MatchmakingCapValue" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/MatchmakingCapHBox"]
+custom_minimum_size = Vector2(22, 0)
+layout_mode = 2
+text = "6"
+horizontal_alignment = 2
 
 [node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -106,8 +197,39 @@ alignment = 1
 layout_mode = 2
 text = "Join Local"
 
-[node name="HUD" type="Control" parent="CanvasLayer"]
+[node name="OnlineLabel" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Online (GD-Sync lobbies; gameplay via cloud or ENet)"
+horizontal_alignment = 1
+
+[node name="OnlineLobbyField" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Lobby name (3–32 characters)"
+alignment = 1
+
+[node name="HostOnlineButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Host online lobby"
+
+[node name="JoinOnlineButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join online lobby"
+
+[node name="PublicLobbiesList" type="ItemList" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+
+[node name="RefreshPublicLobbiesButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Refresh public lobbies"
+
+[node name="JoinSelectedLobbyButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join selected lobby"
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer"]
 visible = false
+z_index = 40
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -116,49 +238,224 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HUD"]
+[node name="Dim" type="ColorRect" parent="CanvasLayer/PauseMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.03, 0.03)
-pivot_offset = Vector2(960, 540)
-texture = ExtResource("3_tlwt5")
-stretch_mode = 5
+color = Color(0, 0, 0, 0.35)
 
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD"]
+[node name="TitlePanel" type="PanelContainer" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -170.0
+offset_top = 58.0
+offset_right = 170.0
+offset_bottom = 138.0
+grow_horizontal = 2
+scale = Vector2(2.5, 2.5)
+pivot_offset = Vector2(170, 40)
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/PauseMenu/TitlePanel"]
+layout_mode = 2
+text = "Pause Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Layout" type="HBoxContainer" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -390.0
+offset_top = -50.0
+offset_right = 390.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.5, 2.5)
+pivot_offset = Vector2(390, 135)
+theme_override_constants/separation = 120
+
+[node name="LeftColumn" type="VBoxContainer" parent="CanvasLayer/PauseMenu/Layout"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/Layout/LeftColumn"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+text = "Resume"
+
+[node name="RespawnButton" type="Button" parent="CanvasLayer/PauseMenu/Layout/LeftColumn"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+text = "Respawn"
+
+[node name="MainMenuButton" type="Button" parent="CanvasLayer/PauseMenu/Layout/LeftColumn"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+text = "Back to Main Menu"
+
+[node name="OptionsPanel" type="PanelContainer" parent="CanvasLayer/PauseMenu/Layout"]
+custom_minimum_size = Vector2(360, 300)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionsVBox" type="VBoxContainer" parent="CanvasLayer/PauseMenu/Layout/OptionsPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="OptionsTitle" type="Label" parent="CanvasLayer/PauseMenu/Layout/OptionsPanel/OptionsVBox"]
+layout_mode = 2
+text = "Options"
+horizontal_alignment = 1
+
+[node name="MasterVolumeLabel" type="Label" parent="CanvasLayer/PauseMenu/Layout/OptionsPanel/OptionsVBox"]
+layout_mode = 2
+text = "Master Volume"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="CanvasLayer/PauseMenu/Layout/OptionsPanel/OptionsVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
+
+[node name="SfxVolumeLabel" type="Label" parent="CanvasLayer/PauseMenu/Layout/OptionsPanel/OptionsVBox"]
+layout_mode = 2
+text = "SFX Volume"
+
+[node name="SfxVolumeSlider" type="HSlider" parent="CanvasLayer/PauseMenu/Layout/OptionsPanel/OptionsVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
+
+[node name="VoiceVolumeLabel" type="Label" parent="CanvasLayer/PauseMenu/Layout/OptionsPanel/OptionsVBox"]
+layout_mode = 2
+text = "Voice Volume"
+
+[node name="VoiceVolumeSlider" type="HSlider" parent="CanvasLayer/PauseMenu/Layout/OptionsPanel/OptionsVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
+
+[node name="MusicVolumeLabel" type="Label" parent="CanvasLayer/PauseMenu/Layout/OptionsPanel/OptionsVBox"]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="CanvasLayer/PauseMenu/Layout/OptionsPanel/OptionsVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
+
+[node name="MissileFlyVolumeLabel" type="Label" parent="CanvasLayer/PauseMenu/Layout/OptionsPanel/OptionsVBox"]
+layout_mode = 2
+text = "Explosion 1 Volume"
+
+[node name="MissileFlyVolumeSlider" type="HSlider" parent="CanvasLayer/PauseMenu/Layout/OptionsPanel/OptionsVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
+
+[node name="MissileUltVolumeLabel" type="Label" parent="CanvasLayer/PauseMenu/Layout/OptionsPanel/OptionsVBox"]
+layout_mode = 2
+text = "Explosion 2/3 Volume"
+
+[node name="MissileUltVolumeSlider" type="HSlider" parent="CanvasLayer/PauseMenu/Layout/OptionsPanel/OptionsVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
+
+[node name="MissileShotVolumeLabel" type="Label" parent="CanvasLayer/PauseMenu/Layout/OptionsPanel/OptionsVBox"]
+layout_mode = 2
+text = "Explosion 4 Volume"
+
+[node name="MissileShotVolumeSlider" type="HSlider" parent="CanvasLayer/PauseMenu/Layout/OptionsPanel/OptionsVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
+
+[node name="OptionsFooterLabel" type="Label" parent="CanvasLayer/PauseMenu/Layout/OptionsPanel/OptionsVBox"]
+layout_mode = 2
+text = "More options coming soon"
+horizontal_alignment = 1
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("5_hud")]
+visible = false
+
+[node name="MatchResultOverlay" type="Control" parent="CanvasLayer"]
+visible = false
+z_index = 50
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="CanvasLayer/MatchResultOverlay"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 619.0
-offset_top = 977.0
-offset_right = -619.0
-offset_bottom = -58.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_aqk2v")
-theme_override_styles/fill = SubResource("StyleBoxFlat_036b0")
-max_value = 500.0
-value = 500.0
-show_percentage = false
+mouse_filter = 2
+color = Color(0.02, 0.03, 0.06, 0.82)
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/MatchResultOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResultLabel" type="Label" parent="CanvasLayer/MatchResultOverlay/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.97, 0.99, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 72
+text = "You win!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="DebugReadout" type="Label" parent="CanvasLayer"]
 visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = -44.0
-offset_right = 720.0
-offset_bottom = -10.0
+offset_left = 14.0
+offset_top = -52.0
+offset_right = 840.0
+offset_bottom = -12.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.9, 0.92, 0.95, 0.9)
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 20
 text = "debug"
+
+[node name="FpsReadout" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = -84.0
+offset_right = 240.0
+offset_bottom = -56.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.25, 0.93, 0.38, 0.95)
+theme_override_font_sizes/font_size = 20
+text = "FPS: 0"
 
 [node name="DeathOverlay" type="Control" parent="CanvasLayer"]
 visible = false
@@ -200,18 +497,22 @@ horizontal_alignment = 1
 [node name="CharacterSelectMenu" parent="CanvasLayer" instance=ExtResource("2_charsel")]
 visible = false
 
+[node name="PrematchCharacterSelect" parent="CanvasLayer" instance=ExtResource("3_prematch")]
+layout_mode = 3
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("uid://b250oylhyv124")
 spawn_path = NodePath("..")
 
-[node name="Greyboxing" type="Node3D" parent="."]
-visible = false
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Greyboxing"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0772705, 3.8147e-06, 0.35936)
-size = Vector3(122.072, 1.66772, 58.2435)
-
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ReturnToMainMenuButton" to="." method="_on_return_to_main_menu_button_pressed"]
+[connection signal="value_changed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/MouseSensitivityHBox/MouseSensitivitySlider" to="." method="_on_mouse_sensitivity_slider_value_changed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/MatchmakingHBox/MatchmakingButton" to="." method="_on_matchmaking_button_pressed"]
+[connection signal="value_changed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/MatchmakingCapHBox/MatchmakingCapSlider" to="." method="_on_matchmaking_cap_slider_value_changed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinLocalButton" to="." method="_on_join_local_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostOnlineButton" to="." method="_on_host_online_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinOnlineButton" to="." method="_on_join_online_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/RefreshPublicLobbiesButton" to="." method="_on_refresh_public_lobbies_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinSelectedLobbyButton" to="." method="_on_join_selected_public_lobby_pressed"]
 [connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
